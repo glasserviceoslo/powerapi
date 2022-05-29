@@ -15,4 +15,13 @@ describe('PO Oauth Token', () => {
     expect(response.body).toHaveProperty('expires_in');
     expect(response.body).toHaveProperty('token_type');
   });
+
+  test('POST / => should return tokens', async () => {
+    const response = await req(app).post('/oauth');
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('access_token');
+    expect(response.body).toHaveProperty('refresh_token');
+    expect(response.body).toHaveProperty('expires_in');
+    expect(response.body).toHaveProperty('token_type');
+  });
 });
