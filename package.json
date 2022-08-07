@@ -6,7 +6,7 @@
   "module": "module",
   "scripts": {
     "prestart": "tsc -p tsconfig.json",
-    "start": "node ./dist/server.js",
+    "start": "node dist/server.js",
     "dev": "npx ts-node-dev server.ts",
     "test": "jest"
   },
