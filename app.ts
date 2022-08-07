@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (_req, res) =>
-  res.json({ message: 'Welcome to Aploskod integration API!' }),
+  res.json({ message: 'Welcome to Aploskod integration API!' })
 );
 app.use('/oauth', poRoutes);
 

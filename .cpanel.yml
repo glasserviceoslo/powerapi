@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/glasscnw/public_html/powerapi
-    - /bin/cp dist/server.js $DEPLOYPATH
