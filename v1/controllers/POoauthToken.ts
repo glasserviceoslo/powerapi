@@ -6,12 +6,10 @@ import axios from 'axios';
 
 config({ path: path.resolve(__dirname, '../.env') });
 
-const auth_key = `${process.env.PO_APP_KEY}:${process.env.PO_CLIENT_KEY}`;
-const buff = Buffer.from(auth_key);
-const BASE64_AUTH = buff.toString('base64');
-const { PO_URL } = process.env;
+const { PO_URL, PO_APP_KEY, PO_CLIENT_KEY } = process.env;
+const BASE64_AUTH = Buffer.from(`${PO_APP_KEY}:${PO_CLIENT_KEY}`).toString('base64');
 
-const urlParams = <TParams>(params: TParams): URLSearchParams => {
+const parseUrlParams = <TParams>(params: TParams): URLSearchParams => {
   const urlParams = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
     urlParams.set(key, value);
@@ -20,7 +18,7 @@ const urlParams = <TParams>(params: TParams): URLSearchParams => {
 };
 
 export const getToken = async (url: string) => {
-  const params = urlParams({ grant_type: 'client_credentials' });
+  const params = parseUrlParams({ grant_type: 'client_credentials' });
   const options = {
     method: 'POST',
     url,
@@ -36,10 +34,7 @@ export const getToken = async (url: string) => {
   return data;
 };
 
-export const getTokenWithRefresh = async (
-  url: string,
-  refreshToken: string
-) => {
+export const getTokenWithRefresh = async (url: string, refreshToken: string) => {
   const params = urlParams({
     grant_type: 'client_credentials',
     refresh_token: refreshToken,
@@ -59,11 +54,7 @@ export const getTokenWithRefresh = async (
   return data;
 };
 
-export const getAuthToken = async (
-  _req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getAuthToken = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const response = await getToken(PO_URL!);
     res.json(response);
