@@ -2,7 +2,7 @@ name: 🚀 Copy files to cPanel
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [main, dev]
 
 jobs:
   build-and-copy:
@@ -13,11 +13,11 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      
-    - name: 🔨 Build Project
-      run: |
-        npm install
-        npm run build
+
+      - name: 🔨 Build Project
+        run: |
+          npm install
+          npm run build
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
