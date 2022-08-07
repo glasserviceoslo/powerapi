@@ -11,9 +11,9 @@ const BASE64_AUTH = Buffer.from(`${PO_APP_KEY}:${PO_CLIENT_KEY}`).toString('base
 
 const parseUrlParams = <TParams>(params: TParams): URLSearchParams => {
   const urlParams = new URLSearchParams();
-  for (const [key, value] of Object.entries(params)) {
+  Object.entries(params).forEach(([key, value]) => {
     urlParams.set(key, value);
-  }
+  });
   return urlParams;
 };
 
@@ -35,7 +35,7 @@ export const getToken = async (url: string) => {
 };
 
 export const getTokenWithRefresh = async (url: string, refreshToken: string) => {
-  const params = urlParams({
+  const params = parseUrlParams({
     grant_type: 'client_credentials',
     refresh_token: refreshToken,
   });
