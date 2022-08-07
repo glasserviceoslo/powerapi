@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAuthToken } from '../controllers/oauthToken';
+import { getAuthToken } from '../controllers/POoauthToken';
 
 const router: Router = Router();
 

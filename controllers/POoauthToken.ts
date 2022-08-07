@@ -1,4 +1,4 @@
-import url from 'url';
+import { URLSearchParams } from 'url';
 import path from 'path';
 import { config } from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
@@ -10,6 +10,14 @@ const auth_key = `${process.env.PO_APP_KEY}:${process.env.PO_CLIENT_KEY}`;
 const buff = Buffer.from(auth_key);
 const BASE64_AUTH = buff.toString('base64');
 const { PO_URL } = process.env;
+
+const urlParams = <TParams>(params: TParams): URLSearchParams => {
+  const urlParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    urlParams.set(key, value);
+  }
+  return urlParams;
+};
 
 export const getToken = async (url: string) => {
   const params = urlParams({ grant_type: 'client_credentials' });
@@ -30,7 +38,7 @@ export const getToken = async (url: string) => {
 
 export const getTokenWithRefresh = async (
   url: string,
-  refreshToken: string,
+  refreshToken: string
 ) => {
   const params = urlParams({
     grant_type: 'client_credentials',
@@ -54,7 +62,7 @@ export const getTokenWithRefresh = async (
 export const getAuthToken = async (
   _req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     const response = await getToken(PO_URL!);
@@ -63,11 +71,3 @@ export const getAuthToken = async (
     next(err);
   }
 };
-
-function urlParams<TParams>(params: TParams) {
-  const urlParams = new url.URLSearchParams();
-  for (const [key, value] of Object.entries(params)) {
-    urlParams.set(key, value);
-  }
-  return urlParams;
-}
