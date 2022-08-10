@@ -13,7 +13,14 @@
     "node": true
   },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": ["camelCase", "PascalCase", "snake_case", "UPPER_CASE"]
+      }
+    ]
   },
   "ignorePatterns": ["node_modules", "build", "dist", "public"]
 }
