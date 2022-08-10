@@ -5,19 +5,12 @@ interface IError {
   status?: number;
 }
 
-export const errorHandler = (
-  _req: Request,
-  _res: Response,
-  next: NextFunction,
-) => {
+export const errorHandler = (_req: Request, _res: Response, next: NextFunction) => {
   const err: IError = new Error('Not Found');
   err.status = 404;
   next(err);
 };
 
-export const globalErrorHandler = (
-  err: any,
-  _req: Request,
-  res: Response,
-  _next: NextFunction,
-) => res.status(err.status || 500).json({ error: err.message });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const globalErrorHandler = (err: any, _req: Request, res: Response, _next: NextFunction) =>
+  res.status(err.status || 500).json({ error: err.message });

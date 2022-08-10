@@ -8,7 +8,6 @@ const app: Application = express();
 app.use(cors());
 app.use(express.json());
 app.use('/', poRoutes);
-
 app.use(errorHandler);
 app.use(globalErrorHandler);
 

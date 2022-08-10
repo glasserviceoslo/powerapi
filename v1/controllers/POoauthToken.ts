@@ -1,10 +1,13 @@
 import { URLSearchParams } from 'url';
-import path from 'path';
-import { config } from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
 import axios from 'axios';
 
-config({ path: path.resolve(__dirname, '../.env') });
+interface ITokenResponse {
+  access_token: string;
+  token_type: 'bearer';
+  expires_in: number;
+  refresh_token: string;
+}
 
 const { PO_URL, PO_APP_KEY, PO_CLIENT_KEY } = process.env;
 const BASE64_AUTH = Buffer.from(`${PO_APP_KEY}:${PO_CLIENT_KEY}`).toString('base64');
@@ -17,11 +20,11 @@ const parseUrlParams = <TParams>(params: TParams): URLSearchParams => {
   return urlParams;
 };
 
-export const getToken = async (url: string) => {
+export const getToken = async (url: string): Promise<ITokenResponse> => {
   const params = parseUrlParams({ grant_type: 'client_credentials' });
   const options = {
     method: 'POST',
-    url,
+    url: `${url}/oauth/token`,
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${BASE64_AUTH}`,
@@ -34,14 +37,14 @@ export const getToken = async (url: string) => {
   return data;
 };
 
-export const getTokenWithRefresh = async (url: string, refreshToken: string) => {
+export const getTokenWithRefresh = async (url: string, refreshToken: string): Promise<ITokenResponse> => {
   const params = parseUrlParams({
     grant_type: 'client_credentials',
     refresh_token: refreshToken,
   });
   const options = {
     method: 'POST',
-    url,
+    url: `${url}/oauth/token`,
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${BASE64_AUTH}`,
