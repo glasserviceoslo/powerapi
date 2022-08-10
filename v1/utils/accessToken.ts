@@ -8,6 +8,9 @@ interface ITokenResponse {
   refresh_token: string;
 }
 
+export const keysToBase64 = (applicationKey: string, clientKey: string): string =>
+  Buffer.from(`${applicationKey}:${clientKey}`).toString('base64');
+
 export const getTokens = async (url: string, base64: string) => {
   const params = parseUrlParams({ grant_type: 'client_credentials' });
   const options = {

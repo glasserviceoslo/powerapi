@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { getTokens } from '../utils/accessToken';
+import { getTokens, keysToBase64 } from '../utils/accessToken';
 
-const { PO_URL, PO_APP_KEY, PO_CLIENT_KEY } = process.env;
-const BASE64_AUTH = Buffer.from(`${PO_APP_KEY}:${PO_CLIENT_KEY}`).toString('base64');
+const { PO_URL } = process.env;
 
 // const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
 //   try {
@@ -15,9 +14,14 @@ const BASE64_AUTH = Buffer.from(`${PO_APP_KEY}:${PO_CLIENT_KEY}`).toString('base
 //   }
 // };
 
-export const getAuthToken = async (_req: Request, res: Response, next: NextFunction) => {
+export const getAuthToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const response = await getTokens(PO_URL!, BASE64_AUTH);
+    const { application_key, client_key } = req.headers;
+    if (!application_key || !client_key) {
+      throw new Error('Missing Application Key or Client Key');
+    }
+    const base64 = keysToBase64(application_key as string, client_key as string);
+    const response = await getTokens(PO_URL!, base64);
     res.json(response);
   } catch (err) {
     next(err);
