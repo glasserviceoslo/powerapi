@@ -37,7 +37,7 @@ export const getTokenWithRefresh = async (url: string, base64: string, refreshTo
     url: `${url}/oauth/token`,
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
-      Authorization: `Basic ${base64}`,
+      Authorization: `bearer ${base64}`,
     },
     data: params,
   };
