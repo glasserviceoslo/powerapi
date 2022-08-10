@@ -14,7 +14,11 @@
     "lint": "eslint --ext .ts ."
   },
   "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davlet61/powerapi.git"
+  },
+  "author": "Dovlat Yakshibayev",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
