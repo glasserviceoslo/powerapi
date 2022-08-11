@@ -22,7 +22,6 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
     }
     const base64 = keysToBase64(application_key as string, client_key as string);
     const response = await getTokens(PO_URL!, base64);
-    req.session.refreshToken = response.refresh_token;
     res.json(response);
   } catch (err) {
     next(err);
@@ -31,9 +30,9 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
 
 export const refreshAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { refresh_token } = res.locals;
+    const { refresh_token } = req.headers;
     if (!refresh_token) {
-      throw new Error('Missing refresh_token in headers');
+      throw new Error('Missing Refresh Token in headers');
     }
     const response = await getTokenWithRefresh(PO_URL!, refresh_token as string);
     res.json(response);

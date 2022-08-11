@@ -7,7 +7,7 @@
   "scripts": {
     "prestart": "tsc -p tsconfig.json",
     "start": "npm run build && node dist/server.js",
-    "dev:ts-node": "npx ts-node-dev --rs --project tsconfig.dev.json server.ts",
+    "dev:ts-node": "npx ts-node-dev --rs server.ts",
     "dev": "doppler run -- npm run dev:ts-node",
     "build": "tsc -p tsconfig.json",
     "test": "jest",
@@ -24,8 +24,7 @@
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "express-session": "^1.17.3"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

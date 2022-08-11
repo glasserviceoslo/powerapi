@@ -11,7 +11,6 @@ export const keysToBase64 = (applicationKey: string, clientKey: string): string 
   Buffer.from(`${applicationKey}:${clientKey}`).toString('base64');
 
 export const getTokens = async (url: string, base64: string) => {
-  const params = new URLSearchParams({ grant_type: 'client_credentials' });
   const options = {
     method: 'POST',
     url: `${url}/oauth/token`,
@@ -19,7 +18,7 @@ export const getTokens = async (url: string, base64: string) => {
       'content-type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${base64}`,
     },
-    data: params,
+    data: new URLSearchParams({ grant_type: 'client_credentials' }),
   };
 
   const { data } = (await axios(options)) as { data: ITokenResponse };
@@ -27,17 +26,16 @@ export const getTokens = async (url: string, base64: string) => {
 };
 
 export const getTokenWithRefresh = async (url: string, refreshToken: string) => {
-  const params = new URLSearchParams({
-    grant_type: 'client_credentials',
-    refresh_token: refreshToken,
-  });
   const options = {
     method: 'POST',
     url: `${url}/oauth/token`,
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
     },
-    data: params,
+    data: new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+    }),
   };
 
   const { data } = (await axios(options)) as { data: ITokenResponse };
