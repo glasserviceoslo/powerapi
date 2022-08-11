@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig",
+  "ts-node": {
+    "files": true
+  },
+  "files": ["types/session.d.ts"]
+}
