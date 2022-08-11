@@ -21,7 +21,7 @@ export const getTokens = async (url: string, base64: string) => {
     data: new URLSearchParams({ grant_type: 'client_credentials' }),
   };
 
-  const { data } = (await axios(options)) as { data: ITokenResponse };
+  const { data } = await axios.request<ITokenResponse>(options);
   return data;
 };
 
@@ -38,6 +38,6 @@ export const getTokenWithRefresh = async (url: string, refreshToken: string) => 
     }),
   };
 
-  const { data } = (await axios(options)) as { data: ITokenResponse };
+  const { data } = await axios.request<ITokenResponse>(options);
   return data;
 };
