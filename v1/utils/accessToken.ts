@@ -1,5 +1,4 @@
 import axios from 'axios';
-import parseUrlParams from './urlParams';
 
 interface ITokenResponse {
   access_token: string;
@@ -12,7 +11,7 @@ export const keysToBase64 = (applicationKey: string, clientKey: string): string 
   Buffer.from(`${applicationKey}:${clientKey}`).toString('base64');
 
 export const getTokens = async (url: string, base64: string) => {
-  const params = parseUrlParams({ grant_type: 'client_credentials' }).toString();
+  const params = new URLSearchParams({ grant_type: 'client_credentials' });
   const options = {
     method: 'POST',
     url: `${url}/oauth/token`,
@@ -27,17 +26,16 @@ export const getTokens = async (url: string, base64: string) => {
   return data;
 };
 
-export const getTokenWithRefresh = async (url: string, base64: string, refreshToken: string) => {
-  const params = parseUrlParams({
+export const getTokenWithRefresh = async (url: string, refreshToken: string) => {
+  const params = new URLSearchParams({
     grant_type: 'client_credentials',
     refresh_token: refreshToken,
-  }).toString();
+  });
   const options = {
     method: 'POST',
     url: `${url}/oauth/token`,
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
-      Authorization: `bearer ${base64}`,
     },
     data: params,
   };

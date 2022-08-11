@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getTokens, keysToBase64 } from '../utils/accessToken';
+import { getTokens, getTokenWithRefresh, keysToBase64 } from '../utils/accessToken';
 
 const { PO_URL } = process.env;
 
@@ -14,7 +14,7 @@ const { PO_URL } = process.env;
 //   }
 // };
 
-export const getAuthToken = async (req: Request, res: Response, next: NextFunction) => {
+export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { application_key, client_key } = req.headers;
     if (!application_key || !client_key) {
@@ -22,10 +22,22 @@ export const getAuthToken = async (req: Request, res: Response, next: NextFuncti
     }
     const base64 = keysToBase64(application_key as string, client_key as string);
     const response = await getTokens(PO_URL!, base64);
+    req.session.refreshToken = response.refresh_token;
     res.json(response);
   } catch (err) {
     next(err);
   }
 };
 
-export default getAuthToken;
+export const refreshAccessToken = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { refresh_token } = res.locals;
+    if (!refresh_token) {
+      throw new Error('Missing refresh_token in headers');
+    }
+    const response = await getTokenWithRefresh(PO_URL!, refresh_token as string);
+    res.json(response);
+  } catch (err) {
+    next(err);
+  }
+};
