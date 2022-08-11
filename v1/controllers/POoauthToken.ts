@@ -3,17 +3,6 @@ import { getTokens, getTokenWithRefresh, keysToBase64 } from '../utils/accessTok
 
 const { PO_URL } = process.env;
 
-// const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
-//   try {
-//     const { access_token, refresh_token } = await getTokens(PO_URL!, BASE64_AUTH);
-//     res.locals.accessToken = access_token;
-//     res.locals.refreshToken = refresh_token;
-//     next();
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { application_key, client_key } = req.headers;
