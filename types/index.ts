@@ -4,8 +4,3 @@ export interface ITokenResponse {
   expires_in: number;
   refresh_token: string;
 }
-
-export interface IRequestHeaders {
-  application_key: string;
-  client_key: string;
-}

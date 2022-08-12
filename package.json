@@ -5,13 +5,18 @@
   "main": "server.ts",
   "module": "module",
   "scripts": {
+    "postinstall": "npm run db:generate",
     "prestart": "tsc -p tsconfig.json",
     "start": "npm run build && node dist/server.js",
     "dev:ts-node": "npx ts-node-dev --rs --project tsconfig.dev.json server.ts",
     "dev": "doppler run -- npm run dev:ts-node",
     "build": "tsc -p tsconfig.json",
     "test": "jest",
-    "lint": "eslint --ext .ts ."
+    "lint": "eslint --ext .ts .",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev --name init",
+    "db:push": "prisma db push",
+    "db:pull": "prisma db pull"
   },
   "keywords": [],
   "repository": {
@@ -21,6 +26,7 @@
   "author": "Dovlat Yakshibayev",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.2.1",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -45,6 +51,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^28.1.0",
+    "prisma": "^4.2.1",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.3",
     "typescript": "^4.7.2"

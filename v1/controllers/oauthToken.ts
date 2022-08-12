@@ -1,14 +1,22 @@
 import { NextFunction, Request, Response } from 'express';
 import { getTokens, getTokenWithRefresh, keysToBase64 } from '../utils/accessToken';
+import prisma from '../../db';
+import { encrypt } from '../utils/encryption';
 
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { application_key, client_key } = req.headers;
+    const { application_key, client_key } = req.headers as { [key: string]: string };
     if (!application_key || !client_key) {
       throw new Error('Missing Application Key or Client Key');
     }
-    const base64 = keysToBase64(application_key as string, client_key as string);
+    const base64 = keysToBase64(application_key, client_key);
     const response = await getTokens(base64);
+    const token = await prisma.refreshToken.create({
+      data: {
+        token: encrypt(response.refresh_token),
+      },
+    });
+    console.log('🚀 ~ file: oauthToken.ts ~ line 19 ~ getAccessToken ~ token', token);
     res.json(response);
   } catch (err) {
     next(err);
