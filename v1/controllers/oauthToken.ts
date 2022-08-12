@@ -9,9 +9,6 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
     }
     const base64 = keysToBase64(application_key as string, client_key as string);
     const response = await getTokens(base64);
-    req.session.accessToken = response.access_token;
-    req.session.refreshToken = response.refresh_token;
-    console.log('🚀 ~ file: POoauthToken.ts ~ req.session', req.session);
     res.json(response);
   } catch (err) {
     next(err);
