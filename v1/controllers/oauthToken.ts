@@ -11,12 +11,11 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
     }
     const base64 = keysToBase64(application_key, client_key);
     const response = await getTokens(base64);
-    const token = await prisma.refreshToken.create({
+    await prisma.refreshToken.create({
       data: {
         token: encrypt(response.refresh_token),
       },
     });
-    console.log('🚀 ~ file: oauthToken.ts ~ line 19 ~ getAccessToken ~ token', token);
     res.json(response);
   } catch (err) {
     next(err);

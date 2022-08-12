@@ -8,7 +8,7 @@
     "postinstall": "npm run db:generate",
     "prestart": "tsc -p tsconfig.json",
     "start": "npm run build && node dist/server.js",
-    "dev:ts-node": "npx ts-node-dev --rs --project tsconfig.dev.json server.ts",
+    "dev:ts-node": "npx ts-node-dev server.ts",
     "dev": "doppler run -- npm run dev:ts-node",
     "build": "tsc -p tsconfig.json",
     "test": "jest",
@@ -31,14 +31,11 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "express-session": "^1.17.3",
-    "node-cron": "^3.0.1",
-    "uuid": "^8.3.2"
+    "node-cron": "^3.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
-    "@types/express-session": "^1.17.5",
     "@types/jest": "^27.5.1",
     "@types/node": "^17.0.36",
     "@types/node-cron": "^3.0.2",
