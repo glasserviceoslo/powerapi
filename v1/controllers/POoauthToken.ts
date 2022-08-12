@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { getTokens, getTokenWithRefresh, keysToBase64 } from '../utils/accessToken';
 
-const { PO_URL } = process.env;
-
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { application_key, client_key } = req.headers;
@@ -10,7 +8,10 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
       throw new Error('Missing Application Key or Client Key');
     }
     const base64 = keysToBase64(application_key as string, client_key as string);
-    const response = await getTokens(PO_URL!, base64);
+    const response = await getTokens(base64);
+    req.session.accessToken = response.access_token;
+    req.session.refreshToken = response.refresh_token;
+    console.log('🚀 ~ file: POoauthToken.ts ~ req.session', req.session);
     res.json(response);
   } catch (err) {
     next(err);
@@ -23,7 +24,7 @@ export const refreshAccessToken = async (req: Request, res: Response, next: Next
     if (!refresh_token) {
       throw new Error('Missing Refresh Token in headers');
     }
-    const response = await getTokenWithRefresh(PO_URL!, refresh_token as string);
+    const response = await getTokenWithRefresh(refresh_token as string);
     res.json(response);
   } catch (err) {
     next(err);

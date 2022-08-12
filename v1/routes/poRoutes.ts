@@ -1,10 +1,11 @@
 import { Router } from 'express';
+import { createNewCustomer } from '../controllers/customers';
 import { getAccessToken, refreshAccessToken } from '../controllers/POoauthToken';
 
 const router: Router = Router();
 
-router.get('/v1', (_req, res) => res.json({ message: 'Welcome to Aploskod integration API, version 1.0!' }));
-router.post('/v1/oauth', getAccessToken);
-router.post('/v1/oauth/refresh', refreshAccessToken);
+router.post('/oauth', getAccessToken);
+router.post('/oauth/refresh', refreshAccessToken);
+router.post('/customers', createNewCustomer);
 
 export default router;

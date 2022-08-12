@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "ts-node": {
+    "files": true
+  },
+  "files": ["types/session.d.ts", "types/index.ts"]
+}
