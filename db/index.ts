@@ -1,11 +1,11 @@
 import mysql from 'mysql2';
 
 const pool = mysql.createPool({
-  host: 'localhost',
+  host: process.env.DB_HOST,
   port: 8889,
-  user: 'root',
-  password: 'root',
-  database: 'powerapi',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
