@@ -28,6 +28,9 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            **/.github*
+            **/.eslint*
+            **/.prettierrc*
             **/node_modules/**
             **/*.ts
             **/*.test.*
