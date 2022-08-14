@@ -36,4 +36,3 @@ jobs:
             **/dist/*.test.*
             /types/
             /v1/
-            /db/
