@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/v1', (_req, res) => {
   console.log('The endpoint was hit');
-  res.json({ message: 'Welcome to Aploskod integration API, version 1.0!' });
+  res.json({ message: 'Welcome to Aploskod integration API!' });
 });
 
 app.use('/v1', oAuthRoute);
