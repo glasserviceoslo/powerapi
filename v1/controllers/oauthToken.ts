@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { getTokens, getTokenWithRefresh, keysToBase64 } from '../utils/accessToken';
-import pool from '../../db';
-import { encrypt } from '../utils/encryption';
 
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -11,10 +9,6 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
     }
     const base64 = keysToBase64(application_key, client_key);
     const response = await getTokens(base64);
-    await pool.execute('INSERT INTO RefreshToken (token, updatedAt) VALUES (?, ?)', [
-      encrypt(response.refresh_token),
-      new Date(),
-    ]);
     res.json(response);
   } catch (err) {
     next(err);
