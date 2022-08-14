@@ -37,5 +37,5 @@ jobs:
             **/*.config.*
             **/tsconfig.*
             **/dist/*.test.*
-            ./types/**
-            ./v1/**
+            */types/**
+            */v1/**
