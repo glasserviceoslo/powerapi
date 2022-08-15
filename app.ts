@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/v1', (_req, res) => {
-  console.log('The endpoint was hit');
+  console.log(`[${new Date()}]: The endpoint was hit`);
   res.json({ message: 'Welcome to Aploskod integration API!' });
 });
 
