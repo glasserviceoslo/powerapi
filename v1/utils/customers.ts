@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-/* eslint-disable import/prefer-default-export */
 export const createCustomer = async (accessToken: string, args: any) => {
   const options = {
     method: 'POST',
@@ -11,6 +10,21 @@ export const createCustomer = async (accessToken: string, args: any) => {
       Authorization: `Bearer ${accessToken}`,
     },
     data: args,
+  };
+
+  const { data } = await axios.request(options);
+  return data;
+};
+
+export const getCustomers = async (accessToken: string) => {
+  const options = {
+    method: 'GET',
+    url: '/customer/?$orderby=Code&$top=10&$skip=0',
+    baseURL: process.env.PO_URL,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      Authorization: `Bearer ${accessToken}`,
+    },
   };
 
   const { data } = await axios.request(options);
