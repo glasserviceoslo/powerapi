@@ -32,9 +32,8 @@ jobs:
             **/.eslint*
             **/.prettierrc*
             **/node_modules/**
-            **/*.ts
-            **/*.test.*
             **/*.config.*
             **/tsconfig.*
             **/dist/*.test.*
+            src/*.test.*
             src/**

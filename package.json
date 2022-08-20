@@ -5,11 +5,10 @@
   "main": "server.ts",
   "module": "module",
   "scripts": {
-    "prestart": "tsc -p tsconfig.json",
     "start": "npm run build && node dist/server.js",
     "dev:ts-node": "npx ts-node-dev --rs --exit-child server.ts",
     "dev": "doppler run -- npm run dev:ts-node",
-    "build": "tsc -p tsconfig.json",
+    "build": "webpack --mode production",
     "test": "jest",
     "lint": "eslint --ext .ts ."
   },
@@ -36,12 +35,17 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
+    "esbuild-loader": "^2.19.0",
     "eslint": "^8.21.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "supertest": "^6.2.3",
-    "typescript": "^4.7.2"
+    "ts-loader": "^9.3.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.7.4",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }

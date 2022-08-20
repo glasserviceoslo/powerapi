@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { createCustomer, getCustomers } from '@v1/utils/customers';
+import { createCustomer, getCustomers } from 'src/v1/utils/customers';
 
 export const createNewCustomer = async (req: Request, res: Response, next: NextFunction) => {
   try {
