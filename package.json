@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",
-  "module": "module",
   "scripts": {
     "start": "npm run build && node dist/server.js",
     "develop": "ts-node-dev -r tsconfig-paths/register src/server.ts",
@@ -21,14 +20,13 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "node-cron": "^3.0.1"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "node-cron": "^3.0.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
-    "@types/jest": "^27.5.1",
     "@types/node": "^17.0.36",
     "@types/node-cron": "^3.0.2",
     "@types/supertest": "^2.0.12",
