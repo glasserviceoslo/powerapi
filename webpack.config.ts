@@ -1,13 +1,18 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
-const { ESBuildMinifyPlugin } = require('esbuild-loader');
+import path from 'path';
+import type { Configuration } from 'webpack';
+import { ESBuildMinifyPlugin } from 'esbuild-loader';
 
-module.exports = {
+const config: Configuration = {
   entry: './src/server.ts',
+  output: {
+    filename: 'server.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.(ts|js)?$/,
+        exclude: /node_modules/,
         loader: 'esbuild-loader',
         options: {
           loader: 'ts',
@@ -29,9 +34,6 @@ module.exports = {
       src: path.resolve(process.cwd(), 'src/'),
     },
   },
-  externals: [nodeExternals()],
-  output: {
-    filename: 'server.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
 };
+
+export default config;
