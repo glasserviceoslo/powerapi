@@ -9,8 +9,6 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
     }
     const base64 = keysToBase64(application_key, client_key);
     const response = await getTokens(base64);
-    console.log('🚀 ~ file: oauthToken.ts ~ line 12 ~ getAccessToken ~ response', response);
-    // comment
     res.json(response);
   } catch (err) {
     next(err);

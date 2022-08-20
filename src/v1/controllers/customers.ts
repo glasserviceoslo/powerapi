@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { createCustomer, getCustomers } from 'src/v1/utils/customers';
+import { createCustomer, getCustomers, getCustomerByName } from 'src/v1/utils/customersReqs';
 
 export const createNewCustomer = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -14,15 +14,21 @@ export const createNewCustomer = async (req: Request, res: Response, next: NextF
   }
 };
 
-export const getCustomerList = async (req: Request, res: Response, next: NextFunction) => {
+export const customersController = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { access_token } = req.headers;
     if (!access_token) {
       throw new Error('Missing Access Token');
     }
-    const customer = await getCustomers(access_token as string);
-    res.json(customer);
+
+    if (req.query.name) {
+      const customer = await getCustomerByName(access_token as string, req.query.name as string);
+      return res.json(customer);
+    }
+
+    const customersList = await getCustomers(access_token as string);
+    return res.json(customersList);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
