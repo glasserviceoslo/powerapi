@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAccessToken, refreshAccessToken } from '../controllers/oauthToken';
+import { getAccessToken, refreshAccessToken } from '@v1/controllers/oauthToken';
 
 const router: Router = Router();
 

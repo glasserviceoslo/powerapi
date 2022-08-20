@@ -1,8 +1,8 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import oAuthRoute from './v1/routes/oAuthRoute';
-import customerRoute from './v1/routes/customerRoute';
-import { errorHandler, globalErrorHandler } from './v1/controllers/errorHandlers';
+import oAuthRoute from '@v1/routes/oAuthRoute';
+import customerRoute from '@v1/routes/customerRoute';
+import { errorHandler, globalErrorHandler } from '@v1/controllers/errorHandlers';
 
 const app: Application = express();
 

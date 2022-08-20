@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getTokens, getTokenWithRefresh, keysToBase64 } from '../utils/accessToken';
+import { getTokens, getTokenWithRefresh, keysToBase64 } from '@v1/utils/accessToken';
 
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
