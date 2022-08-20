@@ -24,5 +24,17 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/
           server-dir: powerapi/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github*
+            **/.eslint*
+            **/.prettierrc*
+            **/node_modules/**
+            **/*.ts
+            **/*.test.*
+            **/*.config.*
+            **/tsconfig.*
+            **/dist/*.test.*
+            src/**
