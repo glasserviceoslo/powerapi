@@ -1,5 +1,6 @@
 import path from 'path';
 import type { Configuration } from 'webpack';
+import nodeExternals from 'webpack-node-externals';
 import { ESBuildMinifyPlugin } from 'esbuild-loader';
 
 const config: Configuration = {
@@ -34,6 +35,7 @@ const config: Configuration = {
       src: path.resolve(process.cwd(), 'src/'),
     },
   },
+  externals: [nodeExternals()],
 };
 
 export default config;
