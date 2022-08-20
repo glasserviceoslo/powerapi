@@ -1,9 +1,9 @@
 import path from 'path';
 import type { Configuration } from 'webpack';
-import nodeExternals from 'webpack-node-externals';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const config: Configuration = {
+  target: 'node',
   entry: './src/server.ts',
   output: {
     filename: 'server.js',
@@ -13,7 +13,7 @@ const config: Configuration = {
     rules: [
       {
         test: /\.(ts|js)?$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         loader: 'esbuild-loader',
         options: {
           loader: 'ts',
@@ -29,7 +29,6 @@ const config: Configuration = {
     },
   },
   plugins: [new ForkTsCheckerWebpackPlugin()],
-  externals: [nodeExternals()],
 };
 
 export default config;

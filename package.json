@@ -9,7 +9,6 @@
     "develop": "ts-node-dev -r tsconfig-paths/register src/server.ts",
     "dev": "doppler run -- npm run develop",
     "build": "webpack --mode production",
-    "test": "jest",
     "lint": "eslint --ext .ts ."
   },
   "keywords": [],
@@ -37,6 +36,7 @@
     "@types/webpack-node-externals": "^2.5.3",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
+    "browserify": "^17.0.0",
     "esbuild-loader": "^2.19.0",
     "eslint": "^8.21.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -46,6 +46,7 @@
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "supertest": "^6.2.3",
     "swc-loader": "^0.2.3",
+    "terser": "^5.14.2",
     "ts-loader": "^9.3.1",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.1.0",
