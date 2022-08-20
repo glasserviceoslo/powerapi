@@ -1,7 +1,7 @@
 import path from 'path';
 import type { Configuration } from 'webpack';
 import nodeExternals from 'webpack-node-externals';
-import { ESBuildMinifyPlugin } from 'esbuild-loader';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const config: Configuration = {
   entry: './src/server.ts',
@@ -22,19 +22,13 @@ const config: Configuration = {
       },
     ],
   },
-  optimization: {
-    minimizer: [
-      new ESBuildMinifyPlugin({
-        target: 'es2015',
-      }),
-    ],
-  },
   resolve: {
     extensions: ['.ts', '.js'],
     alias: {
       src: path.resolve(process.cwd(), 'src/'),
     },
   },
+  plugins: [new ForkTsCheckerWebpackPlugin()],
   externals: [nodeExternals()],
 };
 
