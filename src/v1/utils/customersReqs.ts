@@ -72,5 +72,6 @@ export const deleteCustomerById = async (accessToken: string, id: string) => {
     },
   };
 
-  await axios.request(options);
+  const { data } = await axios.request(options);
+  return data;
 };

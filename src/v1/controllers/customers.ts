@@ -24,8 +24,8 @@ export const createNew = async (req: Request, res: Response, next: NextFunction)
 export const deleteById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { access_token } = req.headers as IReqHeaders;
-    await deleteCustomerById(access_token, req.params.id);
-    res.status(204);
+    const deleted = await deleteCustomerById(access_token, req.params.id);
+    res.status(204).json(deleted);
   } catch (error) {
     next(error);
   }
