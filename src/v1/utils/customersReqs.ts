@@ -45,3 +45,32 @@ export const getCustomerByName = async (accessToken: string, name: string) => {
   const { data } = await axios.request(options);
   return data;
 };
+
+export const getCustomerById = async (accessToken: string, id: string) => {
+  const options = {
+    method: 'GET',
+    url: `/customer/${id}`,
+    baseURL: process.env.PO_URL,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  const { data } = await axios.request(options);
+  return data;
+};
+
+export const deleteCustomerById = async (accessToken: string, id: string) => {
+  const options = {
+    method: 'DELETE',
+    url: `/customer/${id}`,
+    baseURL: process.env.PO_URL,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  await axios.request(options);
+};

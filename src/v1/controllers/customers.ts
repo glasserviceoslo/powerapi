@@ -1,13 +1,45 @@
 import { NextFunction, Request, Response } from 'express';
-import { createCustomer, getCustomers, getCustomerByName } from 'src/v1/utils/customersReqs';
+import {
+  createCustomer,
+  deleteCustomerById,
+  getCustomerById,
+  getCustomerByName,
+  getCustomers,
+} from '../utils/customersReqs';
 
-export const createNewCustomer = async (req: Request, res: Response, next: NextFunction) => {
+export const createNew = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { access_token } = req.headers;
     if (!access_token) {
       throw new Error('Missing Access Token');
     }
     const customer = await createCustomer(access_token as string, req.body);
+    res.status(201).json(customer);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { access_token } = req.headers;
+    if (!access_token) {
+      throw new Error('Missing Access Token');
+    }
+    await deleteCustomerById(access_token as string, req.params.id);
+    res.status(204);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { access_token } = req.headers;
+    if (!access_token) {
+      throw new Error('Missing Access Token');
+    }
+    const customer = await getCustomerById(access_token as string, req.params.id);
     res.json(customer);
   } catch (error) {
     next(error);
