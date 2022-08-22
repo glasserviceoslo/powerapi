@@ -7,7 +7,7 @@
     "start": "npm run build && node dist/server.js",
     "develop": "ts-node-dev -r tsconfig-paths/register --rs src/server.ts",
     "dev": "doppler run -- npm run develop",
-    "build": "webpack --mode production",
+    "build": "rm -rf dist && webpack --mode production",
     "lint": "eslint --ext .ts ."
   },
   "keywords": [],

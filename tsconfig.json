@@ -14,5 +14,6 @@
     "paths": {
       "src/*": [ "src/*" ],
     }
-  }
+  },
+  "exclude": ["/example-responses"]
 }

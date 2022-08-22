@@ -1,0 +1,55 @@
+{
+  "data": [
+    {
+      "invoiceDeliveryType": 1,
+      "isVatFree": false,
+      "invoiceEmailAddress": "invoice@bye.com",
+      "invoiceEmailAddressCC": "",
+      "useFactoring": true,
+      "sendReminders": true,
+      "doNotAddLatePaymentFees": false,
+      "doNotAddLatePaymentInterest": false,
+      "reminderEmailAddress": "",
+      "transferToDebtCollectionAgency": true,
+      "customerCreatedDate": "2021-06-17T11:20:57 +00:00",
+      "useInvoiceFee": true,
+      "name": "A-B Transport AS",
+      "legalName": "A-B Transport AS",
+      "contactPersonId": 4253034,
+      "vatNumber": "623470535",
+      "websiteUrl": "www.bye.com",
+      "since": "2021-06-17",
+      "isPerson": false,
+      "isActive": true,
+      "id": 12072256,
+      "code": 10000,
+      "externalCode": 10000,
+      "mailAddress": {
+        "city": "TRONDHEIM",
+        "zipCode": "7426",
+        "address1": "Main Street 4738",
+        "countryCode": "NO",
+        "lastChanged": "2021-06-17T11:20:57 +00:00",
+        "id": 8334696,
+        "isPrimary": false
+      },
+      "streetAddress": {
+        "city": "TRONDHEIM",
+        "zipCode": "7426",
+        "address1": "Main Street 4738",
+        "countryCode": "NO",
+        "lastChanged": "2021-06-17T11:20:57 +00:00",
+        "isPrimary": false
+      },
+      "streetAddresses": [],
+      "emailAddress": "invoice@bye.com",
+      "phoneNumber": "58454459",
+      "isArchived": false,
+      "lastChanged": "2021-06-17T11:21:06 +00:00",
+      "createdDate": "2021-06-17T11:20:57 +00:00",
+      "contactGroups": []
+    }
+  ],
+  "success": true,
+  "count": 1
+}
