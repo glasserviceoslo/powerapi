@@ -4,3 +4,8 @@ export interface ITokenResponse {
   expires_in: number;
   refresh_token: string;
 }
+
+export interface IError {
+  message: string;
+  status?: number;
+}

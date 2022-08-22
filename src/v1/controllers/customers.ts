@@ -7,13 +7,14 @@ import {
   getCustomers,
 } from '../utils/customersReqs';
 
+interface IReqHeaders {
+  [key: string]: string;
+}
+
 export const createNew = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers;
-    if (!access_token) {
-      throw new Error('Missing Access Token');
-    }
-    const customer = await createCustomer(access_token as string, req.body);
+    const { access_token } = req.headers as IReqHeaders;
+    const customer = await createCustomer(access_token, req.body);
     res.status(201).json(customer);
   } catch (error) {
     next(error);
@@ -22,11 +23,8 @@ export const createNew = async (req: Request, res: Response, next: NextFunction)
 
 export const deleteById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers;
-    if (!access_token) {
-      throw new Error('Missing Access Token');
-    }
-    await deleteCustomerById(access_token as string, req.params.id);
+    const { access_token } = req.headers as IReqHeaders;
+    await deleteCustomerById(access_token, req.params.id);
     res.status(204);
   } catch (error) {
     next(error);
@@ -35,11 +33,8 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
 
 export const getById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers;
-    if (!access_token) {
-      throw new Error('Missing Access Token');
-    }
-    const customer = await getCustomerById(access_token as string, req.params.id);
+    const { access_token } = req.headers as IReqHeaders;
+    const customer = await getCustomerById(access_token, req.params.id);
     res.json(customer);
   } catch (error) {
     next(error);
@@ -48,17 +43,13 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
 
 export const customersController = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers;
-    if (!access_token) {
-      throw new Error('Missing Access Token');
-    }
+    const { access_token } = req.headers as IReqHeaders;
 
     if (req.query.name) {
-      const customer = await getCustomerByName(access_token as string, req.query.name as string);
+      const customer = await getCustomerByName(access_token, req.query.name as string);
       return res.json(customer);
     }
-
-    const customersList = await getCustomers(access_token as string);
+    const customersList = await getCustomers(access_token);
     return res.json(customersList);
   } catch (error) {
     return next(error);
