@@ -5,7 +5,7 @@ import {
   getCustomerById,
   getCustomerByName,
   getCustomers,
-} from '../utils/customersReqs';
+} from '../services/customersReqs';
 
 interface IReqHeaders {
   [key: string]: string;
