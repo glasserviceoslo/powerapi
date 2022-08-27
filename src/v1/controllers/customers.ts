@@ -7,13 +7,9 @@ import {
   getCustomers,
 } from '../services/customersReqs';
 
-interface IReqHeaders {
-  [key: string]: string;
-}
-
 export const createNew = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers as IReqHeaders;
+    const { access_token } = req.headers;
     const customer = await createCustomer(access_token, req.body);
     res.status(201).json(customer);
   } catch (error) {
@@ -23,7 +19,7 @@ export const createNew = async (req: Request, res: Response, next: NextFunction)
 
 export const deleteById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers as IReqHeaders;
+    const { access_token } = req.headers;
     const deleted = await deleteCustomerById(access_token, req.params.id);
     res.status(204).json(deleted);
   } catch (error) {
@@ -33,7 +29,7 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
 
 export const getById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers as IReqHeaders;
+    const { access_token } = req.headers;
     const customer = await getCustomerById(access_token, req.params.id);
     res.json(customer);
   } catch (error) {
@@ -43,7 +39,7 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
 
 export const customersController = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { access_token } = req.headers as IReqHeaders;
+    const { access_token } = req.headers;
 
     if (req.query.name) {
       const customer = await getCustomerByName(access_token, req.query.name as string);

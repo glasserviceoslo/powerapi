@@ -4,7 +4,7 @@ import { getTokens, getTokenWithRefresh, keysToBase64 } from 'src/v1/services/ac
 
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { application_key, client_key } = req.headers as { [key: string]: string };
+    const { application_key, client_key } = req.headers;
     if (!application_key || !client_key) {
       const err: IError = new Error('Missing Application Key or Client Key');
       err.status = 400;
