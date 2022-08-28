@@ -15,6 +15,21 @@ export const getInvoiceById = async (accessToken: string, id: string) => {
   return data;
 };
 
+export const getInvoiceList = async (accessToken: string) => {
+  const options = {
+    method: 'GET',
+    url: '/OutgoingInvoice/List',
+    baseURL: process.env.PO_URL,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  const { data } = await axios.request(options);
+  return data;
+};
+
 export const createInvoice = async (accessToken: string, args: any) => {
   const options = {
     method: 'POST',

@@ -16,10 +16,10 @@ export const createCustomer = async (accessToken: string, args: any) => {
   return data;
 };
 
-export const getCustomers = async (accessToken: string) => {
+export const getCustomers = async (accessToken: string, limit: string, skip: string) => {
   const options = {
     method: 'GET',
-    url: '/customer/?$orderby=Code&$top=10&$skip=0',
+    url: `/customer/?$orderby=Code&$top=${limit}&$skip=${skip}`,
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',

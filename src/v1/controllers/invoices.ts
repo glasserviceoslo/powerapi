@@ -1,5 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
-import { createInvoice, getInvoiceById } from '../services/invoiceReqs';
+import { createInvoice, getInvoiceById, getInvoiceList } from '../services/invoiceReqs';
+
+export const getList = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { access_token } = req.headers;
+    const invoices = await getInvoiceList(access_token);
+    res.json(invoices);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const getById = async (req: Request, res: Response, next: NextFunction) => {
   try {
