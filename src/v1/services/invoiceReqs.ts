@@ -18,7 +18,7 @@ export const getInvoiceById = async (accessToken: string, id: string) => {
 export const getInvoiceList = async (accessToken: string) => {
   const options = {
     method: 'GET',
-    url: `/OutgoingInvoice/?$orderby=Code&$top=10&$skip=0`,
+    url: `/OutgoingInvoice`,
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',

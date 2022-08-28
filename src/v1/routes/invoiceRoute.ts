@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { getById } from '../controllers/invoices';
+import { createNew, getById, getList } from '../controllers/invoices';
 import { checkIfHeaderExists } from '../controllers/errorHandlers';
 
 const router: Router = Router();
 
-router.get('/invoices', checkIfHeaderExists);
-router.get('/invoices/:id', checkIfHeaderExists, getById);
-router.post('/invoices', checkIfHeaderExists);
-router.delete('/invoices/:id', checkIfHeaderExists);
+router.get('/', checkIfHeaderExists, getList);
+router.get('/:id', checkIfHeaderExists, getById);
+router.post('/', checkIfHeaderExists, createNew);
+router.delete('/:id', checkIfHeaderExists);
 
 export default router;

@@ -3,7 +3,7 @@ import { getAccessToken, refreshAccessToken } from 'src/v1/controllers/oauthToke
 
 const router: Router = Router();
 
-router.post('/oauth', getAccessToken);
-router.post('/oauth/refresh', refreshAccessToken);
+router.post('/', getAccessToken);
+router.post('/refresh', refreshAccessToken);
 
 export default router;

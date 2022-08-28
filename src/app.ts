@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import oAuthRoute from 'src/v1/routes/oAuthRoute';
 import customerRoute from 'src/v1/routes/customerRoute';
+import invoiceRoute from 'src/v1/routes/invoiceRoute';
 import { errorHandler, globalErrorHandler } from 'src/v1/controllers/errorHandlers';
 
 const app: Application = express();
@@ -15,8 +16,9 @@ app.get('/v1', (_req, res) => {
   res.json({ message: 'Welcome to Aploskod integration API!' });
 });
 
-app.use('/v1', oAuthRoute);
-app.use('/v1', customerRoute);
+app.use('/v1/oauth', oAuthRoute);
+app.use('/v1/customers', customerRoute);
+app.use('/v1/invoices', invoiceRoute);
 app.use(errorHandler);
 app.use(globalErrorHandler);
 
