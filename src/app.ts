@@ -3,6 +3,7 @@ import cors from 'cors';
 import oAuthRoute from 'src/v1/routes/oAuthRoute';
 import customerRoute from 'src/v1/routes/customerRoute';
 import invoiceRoute from 'src/v1/routes/invoiceRoute';
+import latepointWebhook from 'src/v1/routes/latepointWebhook';
 import { errorHandler, globalErrorHandler } from 'src/v1/controllers/errorHandlers';
 
 const app: Application = express();
@@ -19,6 +20,7 @@ app.get('/v1', (_req, res) => {
 app.use('/v1/oauth', oAuthRoute);
 app.use('/v1/customers', customerRoute);
 app.use('/v1/invoices', invoiceRoute);
+app.use('/v1/latepoint', latepointWebhook);
 app.use(errorHandler);
 app.use(globalErrorHandler);
 
