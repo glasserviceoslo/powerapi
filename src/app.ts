@@ -6,8 +6,7 @@ import invoiceRoute from '@v1/routes/invoiceRoute';
 import productRoute from '@v1/routes/productRoute';
 import latepointWebhook from '@v1/routes/latepointWebhook';
 import { checkIfHeaderExists, errorHandler, globalErrorHandler } from '@v1/controllers/errorHandlers';
-import { axiosRequest } from '@v1/services/helpers';
-import { POProductsType } from '@types';
+import { syncProducts } from '@v1/controllers/sync';
 
 const app: Application = express();
 
@@ -26,33 +25,7 @@ app.use('/v1/invoices', invoiceRoute);
 app.use('/v1/products', productRoute);
 app.use('/v1/latepoint', latepointWebhook);
 
-app.get('/v1/sync', checkIfHeaderExists, async (req, res) => {
-  const { access_token } = req.headers;
-  const options = {
-    method: 'GET',
-    url: `/products`,
-    baseURL: 'http://localhost:3001/v1',
-    headers: {
-      'content-type': 'application/json; charset=utf-8',
-      access_token,
-    },
-  };
-  const { data: products } = await axiosRequest<POProductsType>(options);
-  products.forEach(async (p) => {
-    const suiteOptions = {
-      method: 'POST',
-      url: `/products`,
-      baseURL: 'http://localhost:3001/v1',
-      headers: {
-        'content-type': 'application/json; charset=utf-8',
-        access_token,
-      },
-      data: p,
-    };
-    return axiosRequest<any>(suiteOptions);
-  });
-  res.json({ message: 'Sync in progress...' });
-});
+app.get('/v1/sync', checkIfHeaderExists, syncProducts);
 
 app.use(errorHandler);
 app.use(globalErrorHandler);
