@@ -18,7 +18,7 @@ export const getTokens = async () => {
   return axiosRequest<Omit<ITokenResponse, 'refresh_token'>>(options);
 };
 
-export const createAccountModule = async (accessToken: string, args: any) => {
+export const createNewModule = async (accessToken: string, args: any) => {
   const options = {
     method: 'POST',
     url: '/V8/module',
@@ -56,5 +56,5 @@ export const getFilteredCollection = async (accessToken: string, name: string, e
       Authorization: `Bearer ${accessToken}`,
     },
   };
-  return axiosRequest(options);
+  return axiosRequest<any>(options);
 };

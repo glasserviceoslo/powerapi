@@ -1,3 +1,5 @@
+import poProducts from '@data/po-product.json';
+
 export interface ITokenResponse {
   access_token: string;
   token_type: 'bearer';
@@ -9,3 +11,5 @@ export interface IError {
   message: string;
   status?: number;
 }
+
+export type POProductsType = typeof poProducts;

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { createAccountModule, getFilteredCollection, getTokens, updateModule } from '@v1/services/suiteRequests';
+import { createNewModule, getFilteredCollection, getTokens, updateModule } from '@v1/services/suiteRequests';
 
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -30,7 +30,7 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
       const updatedAccount = await updateModule(access_token, newVal);
       return res.status(201).json(updatedAccount);
     }
-    const account = await createAccountModule(access_token, accountData);
+    const account = await createNewModule(access_token, accountData);
     return res.status(201).json(account);
   } catch (error) {
     return next(error);
