@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { ITokenResponse } from 'src/types';
+import { axiosRequest } from './helpers/helpers';
 
 export const keysToBase64 = (applicationKey: string, clientKey: string): string =>
   Buffer.from(`${applicationKey}:${clientKey}`).toString('base64');
@@ -15,9 +15,7 @@ export const getTokens = async (base64: string) => {
     },
     data: new URLSearchParams({ grant_type: 'client_credentials' }),
   };
-
-  const { data } = await axios.request<ITokenResponse>(options);
-  return data;
+  return axiosRequest<ITokenResponse>(options);
 };
 
 export const getTokenWithRefresh = async (refreshToken: string) => {
@@ -33,7 +31,5 @@ export const getTokenWithRefresh = async (refreshToken: string) => {
       refresh_token: refreshToken,
     }),
   };
-
-  const { data } = await axios.request<ITokenResponse>(options);
-  return data;
+  return axiosRequest<ITokenResponse>(options);
 };

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axiosRequest } from './helpers/helpers';
 
 export const createCustomer = async (accessToken: string, args: any) => {
   const options = {
@@ -11,9 +11,7 @@ export const createCustomer = async (accessToken: string, args: any) => {
     },
     data: args,
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };
 
 export const getCustomers = async (accessToken: string, limit: string, skip: string) => {
@@ -26,9 +24,7 @@ export const getCustomers = async (accessToken: string, limit: string, skip: str
       Authorization: `Bearer ${accessToken}`,
     },
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };
 
 export const getCustomerByName = async (accessToken: string, name: string) => {
@@ -41,9 +37,7 @@ export const getCustomerByName = async (accessToken: string, name: string) => {
       Authorization: `Bearer ${accessToken}`,
     },
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };
 
 export const getCustomerById = async (accessToken: string, id: string) => {
@@ -56,9 +50,7 @@ export const getCustomerById = async (accessToken: string, id: string) => {
       Authorization: `Bearer ${accessToken}`,
     },
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };
 
 export const deleteCustomerById = async (accessToken: string, id: string) => {
@@ -71,7 +63,5 @@ export const deleteCustomerById = async (accessToken: string, id: string) => {
       Authorization: `Bearer ${accessToken}`,
     },
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };

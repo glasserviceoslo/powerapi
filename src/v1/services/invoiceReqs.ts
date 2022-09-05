@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axiosRequest } from './helpers/helpers';
 
 export const getInvoiceById = async (accessToken: string, id: string) => {
   const options = {
@@ -10,9 +10,7 @@ export const getInvoiceById = async (accessToken: string, id: string) => {
       Authorization: `Bearer ${accessToken}`,
     },
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };
 
 export const getInvoiceList = async (accessToken: string) => {
@@ -25,9 +23,7 @@ export const getInvoiceList = async (accessToken: string) => {
       Authorization: `Bearer ${accessToken}`,
     },
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };
 
 export const createInvoice = async (accessToken: string, args: any) => {
@@ -41,7 +37,5 @@ export const createInvoice = async (accessToken: string, args: any) => {
     },
     data: args,
   };
-
-  const { data } = await axios.request(options);
-  return data;
+  return axiosRequest(options);
 };

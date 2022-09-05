@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { ITokenResponse } from 'src/types';
+import { axiosRequest } from './helpers/helpers';
 
 const { SUITE_URL, SUITE_CLIENT_ID, SUITE_CLIENT_SECRET } = process.env;
 
@@ -15,9 +15,7 @@ export const getTokens = async () => {
       client_secret: SUITE_CLIENT_SECRET,
     }),
   };
-
-  const { data } = await axios.request<Omit<ITokenResponse, 'refresh_token'>>(options);
-  return data;
+  return axiosRequest<Omit<ITokenResponse, 'refresh_token'>>(options);
 };
 
 export const createAccountModule = async (accessToken: string, args: any) => {
@@ -31,12 +29,7 @@ export const createAccountModule = async (accessToken: string, args: any) => {
     },
     data: args,
   };
-  try {
-    const { data } = await axios.request(options);
-    return data;
-  } catch (error: any) {
-    return error.message;
-  }
+  return axiosRequest(options);
 };
 
 export const updateModule = async (accessToken: string, args: any) => {
@@ -50,12 +43,7 @@ export const updateModule = async (accessToken: string, args: any) => {
     },
     data: args,
   };
-  try {
-    const { data } = await axios.request(options);
-    return data;
-  } catch (error: any) {
-    return error.message;
-  }
+  return axiosRequest(options);
 };
 
 export const getFilteredCollection = async (accessToken: string, name: string, email: string) => {
@@ -68,10 +56,5 @@ export const getFilteredCollection = async (accessToken: string, name: string, e
       Authorization: `Bearer ${accessToken}`,
     },
   };
-  try {
-    const { data } = await axios.request(options);
-    return data;
-  } catch (error: any) {
-    return error.message;
-  }
+  return axiosRequest(options);
 };
