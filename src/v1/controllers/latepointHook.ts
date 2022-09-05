@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import { getTokens } from '../services/suiteRequests';
 
-export const createNew = async (req: Request, res: Response, next: NextFunction) => {
+export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { client_id, client_secret } = req.headers;
-    const { access_token } = await getTokens(client_id, client_secret);
+    // const { customer } = req.body;
+    const { access_token } = await getTokens();
 
     // ADD SUITE CREATE MODULE
 
