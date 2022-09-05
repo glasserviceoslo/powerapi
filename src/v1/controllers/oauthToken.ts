@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { IError } from 'src/types';
-import { getTokens, getTokenWithRefresh, keysToBase64 } from 'src/v1/services/accessToken';
+import { IError } from '@types';
+import { getTokens, getTokenWithRefresh, keysToBase64 } from '@v1/services/accessToken';
 
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {

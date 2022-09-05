@@ -1,4 +1,4 @@
-import { axiosRequest } from './helpers/helpers';
+import { axiosRequest } from './helpers';
 
 export const getInvoiceById = async (accessToken: string, id: string) => {
   const options = {

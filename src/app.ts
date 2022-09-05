@@ -1,10 +1,10 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import oAuthRoute from 'src/v1/routes/oAuthRoute';
-import customerRoute from 'src/v1/routes/customerRoute';
-import invoiceRoute from 'src/v1/routes/invoiceRoute';
-import latepointWebhook from 'src/v1/routes/latepointWebhook';
-import { errorHandler, globalErrorHandler } from 'src/v1/controllers/errorHandlers';
+import oAuthRoute from '@v1/routes/oAuthRoute';
+import customerRoute from '@v1/routes/customerRoute';
+import invoiceRoute from '@v1/routes/invoiceRoute';
+import latepointWebhook from '@v1/routes/latepointWebhook';
+import { errorHandler, globalErrorHandler } from '@v1/controllers/errorHandlers';
 
 const app: Application = express();
 

@@ -5,7 +5,7 @@ import {
   getCustomerById,
   getCustomerByName,
   getCustomers,
-} from '../services/customersReqs';
+} from '@v1/services/customersReqs';
 
 export const createNew = async (req: Request, res: Response, next: NextFunction) => {
   try {

@@ -1,5 +1,5 @@
-import { ITokenResponse } from 'src/types';
-import { axiosRequest } from './helpers/helpers';
+import { ITokenResponse } from '@types';
+import { axiosRequest } from './helpers';
 
 export const keysToBase64 = (applicationKey: string, clientKey: string): string =>
   Buffer.from(`${applicationKey}:${clientKey}`).toString('base64');

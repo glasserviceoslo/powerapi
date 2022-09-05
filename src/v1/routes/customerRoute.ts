@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { createNew, customersController, deleteById, getById } from 'src/v1/controllers/customers';
-import { checkIfHeaderExists } from '../controllers/errorHandlers';
+import { createNew, customersController, deleteById, getById } from '@v1/controllers/customers';
+import { checkIfHeaderExists } from '@v1/controllers/errorHandlers';
 
 const router: Router = Router();
 

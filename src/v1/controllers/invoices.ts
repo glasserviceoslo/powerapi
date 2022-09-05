@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { createInvoice, getInvoiceById, getInvoiceList } from '../services/invoiceReqs';
+import { createInvoice, getInvoiceById, getInvoiceList } from '@v1/services/invoiceReqs';
 
 export const getList = async (req: Request, res: Response, next: NextFunction) => {
   try {

@@ -1,4 +1,4 @@
-import { axiosRequest } from './helpers/helpers';
+import { axiosRequest } from './helpers';
 
 export const createCustomer = async (accessToken: string, args: any) => {
   const options = {
