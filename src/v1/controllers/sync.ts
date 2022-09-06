@@ -15,8 +15,8 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
       },
     };
     const { data: products } = await axiosRequest<POProductsType>(options);
-    Promise.all([
-      products.forEach(async (p) => {
+    await Promise.all(
+      products.map(async (p) => {
         const suiteOptions = {
           method: 'POST',
           url: `/products`,
@@ -27,9 +27,9 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
           },
           data: p,
         };
-        await axiosRequest<any>(suiteOptions);
+        return axiosRequest<any>(suiteOptions);
       }),
-    ]);
+    );
     res.json({ message: 'Sync in progress...' });
   } catch (error) {
     next(error);
