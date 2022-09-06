@@ -16,6 +16,7 @@ export const createSuiteProduct = async (req: Request, res: Response, next: Next
           category: '',
           type: 'Good',
           currency_id: '',
+          cost: req.body.costPrice,
           price: req.body.salesPrice,
           url: '',
           aos_product_category: '',
