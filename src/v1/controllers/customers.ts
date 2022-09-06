@@ -45,7 +45,7 @@ export const customersController = async (req: Request, res: Response, next: Nex
       const customer = await getCustomerByName(access_token, req.query.name as string);
       return res.json(customer);
     }
-    const { limit = '10', skip = '0' } = req.params;
+    const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
     const customersList = await getCustomers(access_token, limit, skip);
     return res.json(customersList);
   } catch (error) {

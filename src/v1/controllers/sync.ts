@@ -7,7 +7,7 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
     const { access_token } = req.headers;
     const options = {
       method: 'GET',
-      url: `/products?limit=10000`,
+      url: '/products?limit=10000',
       baseURL: process.env.POWERAPI_URL,
       headers: {
         'content-type': 'application/json; charset=utf-8',
