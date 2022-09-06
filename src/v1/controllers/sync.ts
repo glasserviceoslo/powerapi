@@ -5,9 +5,10 @@ import { NextFunction, Request, Response } from 'express';
 export const syncProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { access_token } = req.headers;
+    const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
     const options = {
       method: 'GET',
-      url: '/products?limit=10000',
+      url: `/products?limit=${limit}&skip=${skip}`,
       baseURL: process.env.POWERAPI_URL,
       headers: {
         'content-type': 'application/json; charset=utf-8',
