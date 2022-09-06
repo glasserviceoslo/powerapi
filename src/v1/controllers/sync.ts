@@ -15,19 +15,21 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
       },
     };
     const { data: products } = await axiosRequest<POProductsType>(options);
-    products.forEach(async (p) => {
-      const suiteOptions = {
-        method: 'POST',
-        url: `/products`,
-        baseURL: process.env.POWERAPI_URL,
-        headers: {
-          'content-type': 'application/json; charset=utf-8',
-          access_token,
-        },
-        data: p,
-      };
-      await axiosRequest<any>(suiteOptions);
-    });
+    Promise.all([
+      products.forEach(async (p) => {
+        const suiteOptions = {
+          method: 'POST',
+          url: `/products`,
+          baseURL: process.env.POWERAPI_URL,
+          headers: {
+            'content-type': 'application/json; charset=utf-8',
+            access_token,
+          },
+          data: p,
+        };
+        await axiosRequest<any>(suiteOptions);
+      }),
+    ]);
     res.json({ message: 'Sync in progress...' });
   } catch (error) {
     next(error);
