@@ -1,3 +1,4 @@
+import { getProductGroupById } from '@v1/services/productsReqs';
 import { createNewModule, getFilteredCategories, getTokens, updateModule } from '@v1/services/suiteRequests';
 import { NextFunction, Request, Response } from 'express';
 
@@ -36,7 +37,8 @@ export const createSuiteProduct = async (req: Request, res: Response, next: Next
 export const createProductCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { access_token } = await getTokens();
-    const { data: existing } = await getFilteredCategories(access_token, req.body.name);
+    const { data: group } = await getProductGroupById(req.headers.access_token, req.body.productGroupId);
+    const { data: existing } = await getFilteredCategories(access_token, group.name);
 
     if (req.method === 'GET') {
       return res.json(existing);
