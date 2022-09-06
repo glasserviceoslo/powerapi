@@ -6,7 +6,7 @@ import invoiceRoute from '@v1/routes/invoiceRoute';
 import productRoute from '@v1/routes/productRoute';
 import latepointWebhook from '@v1/routes/latepointWebhook';
 import { checkIfHeaderExists, errorHandler, globalErrorHandler } from '@v1/controllers/errorHandlers';
-import { syncProducts } from '@v1/controllers/sync';
+import { syncProductGroups, syncProducts } from '@v1/controllers/syncProducts';
 
 const app: Application = express();
 
@@ -25,7 +25,8 @@ app.use('/v1/invoices', invoiceRoute);
 app.use('/v1/products', productRoute);
 app.use('/v1/latepoint', latepointWebhook);
 
-app.get('/v1/sync', checkIfHeaderExists, syncProducts);
+app.get('/v1/products/sync', checkIfHeaderExists, syncProducts);
+app.get('/v1/groups/sync', checkIfHeaderExists, syncProductGroups);
 
 app.use(errorHandler);
 app.use(globalErrorHandler);

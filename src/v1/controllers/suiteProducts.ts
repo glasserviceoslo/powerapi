@@ -1,4 +1,3 @@
-import { getProductGroupById } from '@v1/services/productsReqs';
 import { createNewModule, getFilteredCategories, getTokens, updateModule } from '@v1/services/suiteRequests';
 import { NextFunction, Request, Response } from 'express';
 
@@ -37,16 +36,19 @@ export const createSuiteProduct = async (req: Request, res: Response, next: Next
 export const createProductCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { access_token } = await getTokens();
-    const { data } = await getProductGroupById(req.headers.access_token, req.body.productGroupId);
+    const { data: existing } = await getFilteredCategories(access_token, req.body.name);
+
+    if (req.method === 'GET') {
+      return res.json(existing);
+    }
 
     const categoryData = {
       data: {
         type: 'AOS_Product_Categories',
-        attributes: { name: data.name },
+        attributes: { name: req.body.name },
       },
     };
 
-    const { data: existing } = await getFilteredCategories(access_token, data.name);
     if (existing.length > 0) {
       const newVal = { ...categoryData, data: { id: existing[0].id, ...categoryData.data } };
       const updatedAccount = await updateModule(access_token, newVal);
