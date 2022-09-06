@@ -26,7 +26,7 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
 
     const { data: existing } = await getFilteredCollection(access_token, customer.full_name, customer.email);
     if (existing.length > 0) {
-      const newVal = { ...accountData, data: { ...accountData.data, id: existing.id } };
+      const newVal = { ...accountData, data: { ...accountData.data, id: existing[0].id } };
       const updatedAccount = await updateModule(access_token, newVal);
       return res.status(201).json(updatedAccount);
     }

@@ -16,9 +16,22 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
       },
     };
     const { data: products } = await axiosRequest<POProductsType>(options);
-    await Promise.all(
+    const result = await Promise.all(
       products.map(async (p) => {
-        const suiteOptions = {
+        const SCategoryOpts = {
+          method: 'POST',
+          url: '/products/categories',
+          baseURL: process.env.POWERAPI_URL,
+          headers: {
+            'content-type': 'application/json; charset=utf-8',
+            access_token,
+          },
+          data: { productGroupId: p.productGroupId },
+        };
+
+        const { data: category } = await axiosRequest<any>(SCategoryOpts);
+
+        const SProductOpts = {
           method: 'POST',
           url: `/products`,
           baseURL: process.env.POWERAPI_URL,
@@ -26,12 +39,12 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
             'content-type': 'application/json; charset=utf-8',
             access_token,
           },
-          data: p,
+          data: { ...p, categoryName: category.attributes.name, categoryId: category.id },
         };
-        return axiosRequest<any>(suiteOptions);
+        return axiosRequest<any>(SProductOpts);
       }),
     );
-    res.json({ message: 'Sync in progress...' });
+    res.json(result);
   } catch (error) {
     next(error);
   }
