@@ -32,6 +32,20 @@ export const createNewModule = async (accessToken: string, args: any) => {
   return axiosRequest<any>(options);
 };
 
+export const createRelationship = async (accessToken: string, moduleName: string, id: string, args: any) => {
+  const options = {
+    method: 'POST',
+    url: `/V8/module/${moduleName}/${id}/relationships`,
+    baseURL: SUITE_URL,
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    data: args,
+  };
+  return axiosRequest<any>(options);
+};
+
 export const updateModule = async (accessToken: string, args: any) => {
   const options = {
     method: 'PATCH',
@@ -59,10 +73,10 @@ export const getFilteredAccounts = async (accessToken: string, name: string, ema
   return axiosRequest<any>(options);
 };
 
-export const getFilteredContacts = async (accessToken: string, name: string, email: string) => {
+export const getFilteredContacts = async (accessToken: string, phone: string, email: string) => {
   const options = {
     method: 'GET',
-    url: `/V8/module/Contacts?filter[name][eq]=${name}&filter[operator]=and&filter[email1][eq]=${email}`,
+    url: `/V8/module/Contacts?filter[phone_mobile][eq]=${phone}&filter[operator]=and&filter[email1][eq]=${email}`,
     baseURL: SUITE_URL,
     headers: {
       'content-type': 'application/json',

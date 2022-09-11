@@ -1,5 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
-import { createNewModule, getFilteredAccounts, getTokens, updateModule } from '@v1/services/suiteRequests';
+import {
+  createNewModule,
+  createRelationship,
+  getFilteredAccounts,
+  getFilteredContacts,
+  getTokens,
+  updateModule,
+} from '@v1/services/suiteRequests';
 
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -31,7 +38,6 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
       data: {
         type: 'Contacts',
         attributes: {
-          name: customer.full_name,
           created_by: '3986b4ab-5ed1-0a0c-5493-610cf58154c3',
           created_by_name: 'Glass-Service Svendsen og Sønn AS',
           deleted: '0',
@@ -47,38 +53,43 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
           primary_address_city: custom_fields.cf_a1uMDl3x,
           primary_address_postalcode: custom_fields.cf_S7vs1QMZ,
           primary_address_country: 'NORGE',
-          account_name: 'Jarle Knut Aase',
-          account_id: '9787a651-bef4-be8c-e079-63034b0985a8',
         },
       },
     };
 
-    const { data: existing } = await getFilteredAccounts(access_token, customer.full_name, customer.email);
-    if (existing.length > 0) {
-      const newVal = { ...accountData, data: { ...accountData.data, id: existing[0].id } };
-      await updateModule(access_token, newVal);
-      const updatedContact = {
-        ...contactData,
-        data: {
-          ...contactData.data,
-          account_name: existing[0].attributes.name,
-          account_id: existing[0].id,
-        },
-      };
-      const contact = await createNewModule(access_token, updatedContact);
-      return res.status(201).json(contact);
+    let contact;
+    let account;
+
+    const { data: existingA } = await getFilteredAccounts(access_token, customer.full_name, customer.email);
+    const { data: existingC } = await getFilteredContacts(access_token, customer.phone, customer.email);
+
+    // Check if Contact exists
+    if (existingC.length > 0) {
+      const newVal = { ...contactData, data: { ...contactData.data, id: existingC[0].id } };
+      const { data: uContact } = await updateModule(access_token, newVal);
+      contact = uContact;
     }
-    const { data: account } = await createNewModule(access_token, accountData);
-    const updatedContact = {
-      ...contactData,
+    const { data: nContact } = await createNewModule(access_token, contactData);
+    contact = nContact;
+
+    const relData = {
       data: {
-        ...contactData.data,
-        account_name: account.attributes.name,
-        account_id: account.id,
+        type: 'Contacts',
+        id: contact.id,
       },
     };
-    const contact = await createNewModule(access_token, updatedContact);
-    return res.status(201).json(contact);
+
+    // Check if Account exists
+    if (existingA.length > 0) {
+      const newVal = { ...accountData, data: { ...accountData.data, id: existingA[0].id } };
+      const { data: uAccount } = await updateModule(access_token, newVal);
+      account = uAccount;
+    }
+    const { data: nAccount } = await createNewModule(access_token, accountData);
+    account = nAccount;
+
+    await createRelationship(access_token, account.type, account.id, relData);
+    return res.status(201).json(account);
   } catch (error) {
     return next(error);
   }
