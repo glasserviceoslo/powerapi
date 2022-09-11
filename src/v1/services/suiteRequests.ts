@@ -46,10 +46,23 @@ export const updateModule = async (accessToken: string, args: any) => {
   return axiosRequest<any>(options);
 };
 
-export const getFilteredCollection = async (accessToken: string, name: string, email: string) => {
+export const getFilteredAccounts = async (accessToken: string, name: string, email: string) => {
   const options = {
     method: 'GET',
     url: `/V8/module/Accounts?filter[name][eq]=${name}&filter[operator]=and&filter[email1][eq]=${email}`,
+    baseURL: SUITE_URL,
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  return axiosRequest<any>(options);
+};
+
+export const getFilteredContacts = async (accessToken: string, name: string, email: string) => {
+  const options = {
+    method: 'GET',
+    url: `/V8/module/Contacts?filter[name][eq]=${name}&filter[operator]=and&filter[email1][eq]=${email}`,
     baseURL: SUITE_URL,
     headers: {
       'content-type': 'application/json',

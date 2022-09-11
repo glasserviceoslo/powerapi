@@ -76,7 +76,7 @@ export const syncProductGroups = async (req: Request, res: Response, next: NextF
           },
           data: { name: g.name },
         };
-        await axiosRequest<any>(suiteOpts);
+        return axiosRequest<any>(suiteOpts);
       }),
     );
     res.json(result);

@@ -40,9 +40,10 @@ export const createProductCategory = async (req: Request, res: Response, next: N
     const { data: group } = await getProductGroupById(req.headers.access_token, req.body.productGroupId);
     const { data: existing } = await getFilteredCategories(access_token, group.name);
 
-    if (req.method === 'GET') {
-      return res.json(existing);
-    }
+    // if (req.method === 'GET') {
+    //   console.log('🚀 ~ file: suiteProducts.ts ~ line 42 ~ createProductCategory ~ existing', existing);
+    //   return res.json(existing);
+    // }
 
     const categoryData = {
       data: {
