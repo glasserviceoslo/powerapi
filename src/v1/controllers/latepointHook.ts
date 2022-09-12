@@ -90,7 +90,7 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
     account = nAccount;
 
     await createRelationship(access_token, account.type, account.id, relData);
-    writeFile('/powerapi.log', account);
+    writeFile('powerapi.log', `${JSON.stringify(account)}\n`);
     return res.status(201).json(account);
   } catch (error) {
     return next(error);
