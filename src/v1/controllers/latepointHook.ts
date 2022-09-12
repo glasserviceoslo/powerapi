@@ -7,6 +7,7 @@ import {
   getTokens,
   updateModule,
 } from '@v1/services/suiteRequests';
+import { writeFile } from 'fs/promises';
 
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -89,6 +90,7 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
     account = nAccount;
 
     await createRelationship(access_token, account.type, account.id, relData);
+    writeFile('/powerapi.log', account);
     return res.status(201).json(account);
   } catch (error) {
     return next(error);
