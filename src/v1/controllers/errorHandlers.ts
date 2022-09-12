@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { IError } from '@types';
 import { writeFile } from 'fs/promises';
+import path from 'path';
 
 export const errorHandler = (_req: Request, _res: Response, next: NextFunction) => {
   const err: IError = new Error('Not Found');
@@ -19,6 +20,6 @@ export const checkIfHeaderExists = (req: Request, res: Response, next: NextFunct
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const globalErrorHandler = (err: any, _req: Request, res: Response, _next: NextFunction) => {
-  writeFile('powerapi.log', `${err.status}\n`);
+  writeFile(path.join(process.cwd(), 'powerapi.log'), `${err.status}\n`);
   res.status(err.status || 500).json({ error: err.message });
 };
