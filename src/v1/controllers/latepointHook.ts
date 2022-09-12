@@ -11,6 +11,7 @@ import {
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { customer } = req.body;
+    console.log('🚀 ~ file: latepointHook.ts ~ line 14 ~ moduleFromHook ~ customer', customer);
     const { custom_fields } = customer;
     const { access_token } = await getTokens();
 
