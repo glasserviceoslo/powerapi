@@ -11,7 +11,7 @@ import {
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { customer } = req.body;
-    console.log('🚀 ~ file: latepointHook.ts ~ line 14 ~ moduleFromHook ~ customer', customer);
+    console.log('🚀 ~ file: latepointHook.ts ~ line 14 ~ moduleFromHook ~ customer', req.body);
     const { custom_fields } = customer;
     const { access_token } = await getTokens();
 
@@ -90,7 +90,7 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
     account = nAccount;
 
     await createRelationship(access_token, account.type, account.id, relData);
-    return res.status(201).json(account);
+    return res.status(201).json(req.body);
   } catch (error) {
     return next(error);
   }
