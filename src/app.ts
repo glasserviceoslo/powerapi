@@ -6,8 +6,8 @@ import poInvoices from '@v1/poweroffice/routes/invoices';
 import poProducts from '@v1/poweroffice/routes/products';
 import crmProducts from '@v1/suitecrm/routes/products';
 import latepointWebhook from '@v1/suitecrm/routes/latepointWebhook';
-import { checkIfHeaderExists, errorHandler, globalErrorHandler } from '@middleware/errorHandlers';
-import { syncProductGroups, syncProducts } from '@v1/poweroffice/controllers/syncProducts';
+import sync from '@v1/sync/routes/sync';
+import { errorHandler, globalErrorHandler } from '@middleware/errorHandlers';
 
 const app: Application = express();
 
@@ -26,9 +26,7 @@ app.use('/v1/poweroffice/invoices', poInvoices);
 app.use('/v1/poweroffice/products', poProducts);
 app.use('/v1/suitecrm/products', crmProducts);
 app.use('/v1/latepoint', latepointWebhook);
-
-app.get('/v1/products/sync', checkIfHeaderExists, syncProducts);
-app.get('/v1/groups/sync', checkIfHeaderExists, syncProductGroups);
+app.use('/v1/sync', sync);
 
 app.use(errorHandler);
 app.use(globalErrorHandler);
