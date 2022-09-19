@@ -1,6 +1,6 @@
 import { axiosRequest } from '../../../helpers';
 
-export const getProductsList = async (accessToken: string, limit: string, skip: string) => {
+export const getProductList = async (accessToken: string, limit: string, skip: string) => {
   const options = {
     method: 'GET',
     url: `/Product/?$orderby=Code&$top=${limit}&$skip=${skip}`,

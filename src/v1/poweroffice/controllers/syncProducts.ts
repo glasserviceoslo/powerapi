@@ -20,7 +20,7 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
       products.map(async (p) => {
         const SCategoryOpts = {
           method: 'GET',
-          url: '/products/categories',
+          url: '/poweroffice/products/categories',
           baseURL: process.env.POWERAPI_URL,
           headers: {
             'content-type': 'application/json; charset=utf-8',
@@ -33,7 +33,7 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
 
         const SProductOpts = {
           method: 'POST',
-          url: `/products`,
+          url: `/poweroffice/products`,
           baseURL: process.env.POWERAPI_URL,
           headers: {
             'content-type': 'application/json; charset=utf-8',
@@ -56,7 +56,7 @@ export const syncProductGroups = async (req: Request, res: Response, next: NextF
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
     const options = {
       method: 'GET',
-      url: `/products/groups?limit=${limit}&skip=${skip}`,
+      url: `/poweroffice/products/groups?limit=${limit}&skip=${skip}`,
       baseURL: process.env.POWERAPI_URL,
       headers: {
         'content-type': 'application/json; charset=utf-8',
@@ -68,7 +68,7 @@ export const syncProductGroups = async (req: Request, res: Response, next: NextF
       groups.map(async (g) => {
         const suiteOpts = {
           method: 'POST',
-          url: '/products/categories',
+          url: '/suitecrm/products/categories',
           baseURL: process.env.POWERAPI_URL,
           headers: {
             'content-type': 'application/json; charset=utf-8',
