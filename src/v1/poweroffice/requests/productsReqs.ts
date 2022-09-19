@@ -69,7 +69,7 @@ export const getProductGroupList = async (accessToken: string, limit: string, sk
 export const deleteProductById = async (accessToken: string, id: string) => {
   const options = {
     method: 'DELETE',
-    url: `/customer/${id}`,
+    url: `/Product/${id}`,
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',
