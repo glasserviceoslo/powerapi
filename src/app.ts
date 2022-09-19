@@ -4,6 +4,7 @@ import poOauth from '@v1/poweroffice/routes/oauth';
 import poCustomers from '@v1/poweroffice/routes/customers';
 import poInvoices from '@v1/poweroffice/routes/invoices';
 import poProducts from '@v1/poweroffice/routes/products';
+import crmProducts from '@v1/suitecrm/routes/products';
 import latepointWebhook from '@v1/suitecrm/routes/latepointWebhook';
 import { checkIfHeaderExists, errorHandler, globalErrorHandler } from '@middleware/errorHandlers';
 import { syncProductGroups, syncProducts } from '@v1/poweroffice/controllers/syncProducts';
@@ -19,10 +20,11 @@ app.get('/v1', (_req, res) => {
   res.json({ message: 'Welcome to Aploskod integration API!' });
 });
 
-app.use('/v1/oauth', poOauth);
-app.use('/v1/customers', poCustomers);
-app.use('/v1/invoices', poInvoices);
-app.use('/v1/products', poProducts);
+app.use('/v1/poweroffice/oauth', poOauth);
+app.use('/v1/poweroffice/customers', poCustomers);
+app.use('/v1/poweroffice/invoices', poInvoices);
+app.use('/v1/poweroffice/products', poProducts);
+app.use('/v1/suitecrm/products', crmProducts);
 app.use('/v1/latepoint', latepointWebhook);
 
 app.get('/v1/products/sync', checkIfHeaderExists, syncProducts);
