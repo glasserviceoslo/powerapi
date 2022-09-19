@@ -1,12 +1,12 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import oAuthRoute from '@v1/routes/oAuthRoute';
-import customerRoute from '@v1/routes/customerRoute';
-import invoiceRoute from '@v1/routes/invoiceRoute';
-import productRoute from '@v1/routes/productRoute';
-import latepointWebhook from '@v1/routes/latepointWebhook';
-import { checkIfHeaderExists, errorHandler, globalErrorHandler } from '@v1/controllers/errorHandlers';
-import { syncProductGroups, syncProducts } from '@v1/controllers/syncProducts';
+import poOauth from '@v1/poweroffice/routes/oauth';
+import poCustomers from '@v1/poweroffice/routes/customers';
+import poInvoices from '@v1/poweroffice/routes/invoices';
+import poProducts from '@v1/poweroffice/routes/products';
+import latepointWebhook from '@v1/suitecrm/routes/latepointWebhook';
+import { checkIfHeaderExists, errorHandler, globalErrorHandler } from '@middleware/errorHandlers';
+import { syncProductGroups, syncProducts } from '@v1/poweroffice/controllers/syncProducts';
 
 const app: Application = express();
 
@@ -19,10 +19,10 @@ app.get('/v1', (_req, res) => {
   res.json({ message: 'Welcome to Aploskod integration API!' });
 });
 
-app.use('/v1/oauth', oAuthRoute);
-app.use('/v1/customers', customerRoute);
-app.use('/v1/invoices', invoiceRoute);
-app.use('/v1/products', productRoute);
+app.use('/v1/oauth', poOauth);
+app.use('/v1/customers', poCustomers);
+app.use('/v1/invoices', poInvoices);
+app.use('/v1/products', poProducts);
 app.use('/v1/latepoint', latepointWebhook);
 
 app.get('/v1/products/sync', checkIfHeaderExists, syncProducts);
