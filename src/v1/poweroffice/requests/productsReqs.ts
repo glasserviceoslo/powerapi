@@ -65,3 +65,16 @@ export const getProductGroupList = async (accessToken: string, limit: string, sk
   };
   return axiosRequest(options);
 };
+
+export const deleteProductById = async (accessToken: string, id: string) => {
+  const options = {
+    method: 'DELETE',
+    url: `/customer/${id}`,
+    baseURL: process.env.PO_URL,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  return axiosRequest(options);
+};

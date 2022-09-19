@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import {
   createProduct,
+  deleteProductById,
   getProductByCode,
   getProductGroupById,
   getProductGroupList,
@@ -12,6 +13,16 @@ export const createNew = async (req: Request, res: Response, next: NextFunction)
     const { access_token } = req.headers;
     const customer = await createProduct(access_token, req.body);
     res.status(201).json(customer);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { access_token } = req.headers;
+    const deleted = await deleteProductById(access_token, req.params.id);
+    res.status(204).json(deleted);
   } catch (error) {
     next(error);
   }
