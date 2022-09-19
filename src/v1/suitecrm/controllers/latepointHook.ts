@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
+import { writeFile } from 'fs/promises';
+import path from 'path';
 import {
   createNewModule,
   createRelationship,
@@ -6,9 +8,7 @@ import {
   getFilteredContacts,
   getTokens,
   updateModule,
-} from '@v1/suitecrm/requests/suiteRequests';
-import { writeFile } from 'fs/promises';
-import path from 'path';
+} from '../requests/suiteRequests';
 
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {

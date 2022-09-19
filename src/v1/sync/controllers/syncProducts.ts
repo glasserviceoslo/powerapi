@@ -1,6 +1,6 @@
+import { NextFunction, Request, Response } from 'express';
 import { POProductGroupT, POProductsType } from '@types';
 import { axiosRequest } from '@helpers';
-import { NextFunction, Request, Response } from 'express';
 
 export const syncProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {

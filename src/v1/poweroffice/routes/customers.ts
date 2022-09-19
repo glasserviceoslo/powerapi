@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { createNew, customersController, deleteById, getById } from '@v1/poweroffice/controllers/customers';
 import { checkIfHeaderExists } from '@middleware/errorHandlers';
+import { createNew, customersController, deleteById, getById } from '../controllers/customers';
 
 const router: Router = Router();
 

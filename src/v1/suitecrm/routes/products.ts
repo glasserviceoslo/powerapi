@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { checkIfHeaderExists } from '@middleware/errorHandlers';
-import { createProductCategory, createSuiteProduct } from '@v1/suitecrm/controllers/suiteProducts';
+import { createProductCategory, createSuiteProduct } from '../controllers/suiteProducts';
 
 const router: Router = Router();
 

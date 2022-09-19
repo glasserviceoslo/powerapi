@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { createNewModule, getFilteredAccounts, getTokens, updateModule } from '@v1/suitecrm/requests/suiteRequests';
+import { createNewModule, getFilteredAccounts, getTokens, updateModule } from '../requests/suiteRequests';
 
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {

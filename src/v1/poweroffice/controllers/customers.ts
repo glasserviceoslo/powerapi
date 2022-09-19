@@ -5,7 +5,7 @@ import {
   getCustomerById,
   getCustomerByName,
   getCustomers,
-} from '@v1/poweroffice/requests/customersReqs';
+} from '../requests/customersReqs';
 
 export const createNew = async (req: Request, res: Response, next: NextFunction) => {
   try {

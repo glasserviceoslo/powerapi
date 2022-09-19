@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { moduleFromHook } from '@v1/suitecrm/controllers/latepointHook';
+import { moduleFromHook } from '../controllers/latepointHook';
 
 const router: Router = Router();
 

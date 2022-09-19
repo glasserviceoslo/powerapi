@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { IError } from '@types';
-import { getTokens, getTokenWithRefresh, keysToBase64 } from '@v1/poweroffice/requests/accessToken';
+import { getTokens, getTokenWithRefresh, keysToBase64 } from '../requests/accessToken';
 
 export const getAccessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {

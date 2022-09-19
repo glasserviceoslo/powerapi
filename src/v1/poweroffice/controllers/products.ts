@@ -6,7 +6,7 @@ import {
   getProductGroupById,
   getProductGroupList,
   getProductList,
-} from '@v1/poweroffice/requests/productsReqs';
+} from '../requests/productsReqs';
 
 export const createNew = async (req: Request, res: Response, next: NextFunction) => {
   try {
