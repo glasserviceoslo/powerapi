@@ -8,7 +8,7 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
     const options = {
       method: 'GET',
-      url: `/products?limit=${limit}&skip=${skip}`,
+      url: `/poweroffice/products?limit=${limit}&skip=${skip}`,
       baseURL: process.env.POWERAPI_URL,
       headers: {
         'content-type': 'application/json; charset=utf-8',
@@ -20,7 +20,7 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
       products.map(async (p) => {
         const SCategoryOpts = {
           method: 'GET',
-          url: '/poweroffice/products/categories',
+          url: '/suitecrm/products/categories',
           baseURL: process.env.POWERAPI_URL,
           headers: {
             'content-type': 'application/json; charset=utf-8',

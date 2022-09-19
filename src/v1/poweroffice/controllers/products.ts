@@ -1,14 +1,19 @@
 import { NextFunction, Request, Response } from 'express';
-import { getProductGroupById, getProductGroupList, getProductList } from '@v1/poweroffice/requests/productsReqs';
+import {
+  createProduct,
+  getProductByCode,
+  getProductGroupById,
+  getProductGroupList,
+  getProductList,
+} from '@v1/poweroffice/requests/productsReqs';
 
-export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
+export const createNew = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { access_token } = req.headers;
-    const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
-    const products = await getProductList(access_token, limit, skip);
-    return res.json(products);
+    const customer = await createProduct(access_token, req.body);
+    res.status(201).json(customer);
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
 
@@ -30,5 +35,21 @@ export const getGroupById = async (req: Request, res: Response, next: NextFuncti
     res.json(customer);
   } catch (error) {
     next(error);
+  }
+};
+
+export const productsController = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { access_token } = req.headers;
+
+    if (req.query.code) {
+      const customer = await getProductByCode(access_token, req.query.code as string);
+      return res.json(customer);
+    }
+    const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
+    const products = await getProductList(access_token, limit, skip);
+    return res.json(products);
+  } catch (error) {
+    return next(error);
   }
 };
