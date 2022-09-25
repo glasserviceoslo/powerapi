@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { createNewModule, getFilteredAccounts, getTokens, updateModule } from '@v1/requests/suite/suiteRequests';
 
-export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
+export const moduleFromLatepoint = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { customer } = req.body;
     const { custom_fields } = customer;

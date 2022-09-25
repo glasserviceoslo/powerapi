@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { moduleFromHook } from '../controllers/latepoint';
+import { moduleFromLatepoint } from '../controllers/latepoint';
 
 const router: Router = Router();
 
-router.post('/latepoint', moduleFromHook);
+router.post('/latepoint', moduleFromLatepoint);
 
 export default router;

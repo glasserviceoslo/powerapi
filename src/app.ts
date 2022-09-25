@@ -6,7 +6,7 @@ import poInvoices from '@v1/poweroffice/routes/invoices';
 import poProducts from '@v1/poweroffice/routes/products';
 import crmProducts from '@v1/suitecrm/routes/products';
 import webhookRoutes from '@v1/webhooks/routes';
-import sync from '@v1/sync/routes/sync';
+import sync from '@v1/sync/routes';
 import { errorHandler, globalErrorHandler } from '@middleware/errorHandlers';
 
 const app: Application = express();
