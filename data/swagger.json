@@ -12,15 +12,11 @@
       "url": "https://github.com/salesagility/SuiteCRM/blob/master/LICENSE.txt"
     }
   },
-  "servers": [
-    {
-      "url": "http://localhost/v1"
-    }
-  ],
+  "servers": [{ "url": "http://localhost/v1" }, { "url": "https://api.glasserviceoslo.no/v1" }],
   "paths": {
     "/powerapi/products/{id}": {
       "get": {
-        "tags": ["Module"],
+        "tags": ["PowerOffice"],
         "description": "Returns a bean with the specific ID",
         "parameters": [
           {
@@ -69,7 +65,7 @@
         ]
       },
       "delete": {
-        "tags": ["Module"],
+        "tags": ["PowerOffice"],
         "description": "Delete a bean with specific ID",
         "parameters": [
           {
@@ -111,7 +107,7 @@
     },
     "/module/{module}": {
       "get": {
-        "tags": ["Module"],
+        "tags": ["PowerOffice"],
         "description": "Returns a collections of beans",
         "parameters": [
           {
@@ -196,7 +192,7 @@
     },
     "/module": {
       "post": {
-        "tags": ["Module"],
+        "tags": ["PowerOffice"],
         "requestBody": {
           "description": "Create a module record. If ID is not set, it will be created automatically. Attributes is optional, if the new bean will be set with certain, valid properties",
           "content": {
@@ -230,7 +226,7 @@
         ]
       },
       "patch": {
-        "tags": ["Module"],
+        "tags": ["PowerOffice"],
         "requestBody": {
           "description": "Update a module record. Type and ID are required, attributes have to be valid",
           "content": {
@@ -266,7 +262,7 @@
     },
     "/module/{moduleName}/{id}/relationships/{relationship}": {
       "get": {
-        "tags": ["Relationship"],
+        "tags": ["SuiteCRM"],
         "description": "Get relationship of a bean",
         "parameters": [
           {
@@ -318,7 +314,7 @@
     },
     "/module/{moduleName}/{id}/relationships": {
       "post": {
-        "tags": ["Relationship"],
+        "tags": ["SuiteCRM"],
         "parameters": [
           {
             "name": "moduleName",
@@ -373,7 +369,7 @@
     },
     "/module/{moduleName}/{id}/relationships/{relationship}/{relatedBeanId}": {
       "delete": {
-        "tags": ["Relationship"],
+        "tags": ["SuiteCRM"],
         "description": "Delete relationship between 2 modules",
         "parameters": [
           {
