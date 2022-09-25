@@ -8,7 +8,7 @@ import {
   getFilteredContacts,
   getTokens,
   updateModule,
-} from '../requests/suiteRequests';
+} from '@v1/requests/suite/suiteRequests';
 
 export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
   try {

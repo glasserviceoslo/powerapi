@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { getProductGroupById } from '@v1/poweroffice/requests/productsReqs';
-import { createNewModule, getFilteredCategories, getTokens, updateModule } from '@v1/suitecrm/requests/suiteRequests';
+import { getProductGroupById } from '@v1/requests/po/productsReqs';
+import { createNewModule, getFilteredCategories, getTokens, updateModule } from '@v1/requests/suite/suiteRequests';
 
 export const createSuiteProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
