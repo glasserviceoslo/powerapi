@@ -5,7 +5,7 @@ import poCustomers from '@v1/poweroffice/routes/customers';
 import poInvoices from '@v1/poweroffice/routes/invoices';
 import poProducts from '@v1/poweroffice/routes/products';
 import crmProducts from '@v1/suitecrm/routes/products';
-import latepointWebhook from '@v1/suitecrm/routes/latepointWebhook';
+import latepointWebhook from '@v1/webhooks/routes';
 import sync from '@v1/sync/routes/sync';
 import { errorHandler, globalErrorHandler } from '@middleware/errorHandlers';
 
