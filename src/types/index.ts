@@ -1,5 +1,5 @@
-import poProducts from '@json/po-product.json';
-import poProductGroup from '@json/po-productgroup.json';
+import poProducts from '@data/po-product.json';
+import poProductGroup from '@data/po-productgroup.json';
 
 export interface ITokenResponse {
   access_token: string;
