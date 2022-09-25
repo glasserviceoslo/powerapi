@@ -1,0 +1,20 @@
+{
+  "data": {
+    "id": "718f4245-7968-4141-9603-28aa02422fb5",
+    "invoiceDeliveryType": 1,
+    "orderNo": 20,
+    "orderDate": "2022-08-28",
+    "customerEmail": "customer@example.com",
+    "currencyCode": "NOK",
+    "customerCode": 10022,
+    "totalAmount": 0,
+    "netAmount": 0,
+    "status": 0,
+    "paymentTerms": 14,
+    "outgoingInvoiceLines": [],
+    "lastChanged": "2022-08-28T16:21:38 +00:00",
+    "createdDate": "2022-08-28T16:21:38 +00:00",
+    "isInvoiceBeingProcessed": false
+  },
+  "success": true
+}
