@@ -3,6 +3,6 @@ import { moduleFromHook } from '../controllers/latepoint';
 
 const router: Router = Router();
 
-router.post('/', moduleFromHook);
+router.post('/latepoint', moduleFromHook);
 
 export default router;
