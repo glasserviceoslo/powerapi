@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.js",
     "start:dist": "doppler run -- node dist/server.js",
     "develop": "nodemon -r tsconfig-paths/register --files src/server.ts",
     "dev": "doppler run -- npm run develop",
-    "build:webpack": "rm -rf dist && webpack --mode production",
-    "build": "tsc -p tsconfig.json",
+    "build": "rm -rf dist && webpack --mode production",
+    "build:tsc": "tsc --build",
     "lint": "eslint --ext .ts ."
   },
   "keywords": [],
