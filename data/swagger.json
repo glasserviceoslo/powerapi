@@ -433,14 +433,15 @@
   },
   "components": {
     "securitySchemes": {
-      "oauth2": {
-        "type": "oauth2",
-        "flows": {
-          "password": {
-            "tokenUrl": "http://localhost/powerapi/oauth",
-            "scopes": {}
-          }
-        }
+      "ApplicationKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "application_key"
+      },
+      "ClientKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "client_key"
       }
     }
   }
