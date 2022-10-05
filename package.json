@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "doppler run -- node dist/server.js",
+    "start": "node dist/src/server.js",
+    "start:dist": "doppler run -- node dist/server.js",
     "develop": "nodemon -r tsconfig-paths/register --files src/server.ts",
     "dev": "doppler run -- npm run develop",
     "build:webpack": "rm -rf dist && webpack --mode production",
