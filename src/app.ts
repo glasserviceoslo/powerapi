@@ -5,8 +5,9 @@ import poCustomers from '@v1/poweroffice/routes/customers';
 import poInvoices from '@v1/poweroffice/routes/invoices';
 import poProducts from '@v1/poweroffice/routes/products';
 import crmProducts from '@v1/suitecrm/routes/products';
-import latepointWebhook from '@v1/suitecrm/routes/latepointWebhook';
-import sync from '@v1/sync/routes/sync';
+import webhookRoutes from '@v1/webhooks/routes';
+import sync from '@v1/sync/routes';
+import docRoute from '@v1/docs/router';
 import { errorHandler, globalErrorHandler } from '@middleware/errorHandlers';
 
 const app: Application = express();
@@ -25,8 +26,9 @@ app.use('/v1/poweroffice/customers', poCustomers);
 app.use('/v1/poweroffice/invoices', poInvoices);
 app.use('/v1/poweroffice/products', poProducts);
 app.use('/v1/suitecrm/products', crmProducts);
-app.use('/v1/latepoint', latepointWebhook);
+app.use('/v1/hooks', webhookRoutes);
 app.use('/v1/sync', sync);
+app.use('/v1/docs', docRoute);
 
 app.use(errorHandler);
 app.use(globalErrorHandler);
