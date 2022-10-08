@@ -1,5 +1,5 @@
-import { ITokenResponse } from '@types';
-import { axiosRequest } from '../../../helpers';
+import { ITokenResponse } from '$types';
+import { axiosRequest } from '$helpers';
 
 const { SUITE_URL, SUITE_CLIENT_ID, SUITE_CLIENT_SECRET } = process.env;
 

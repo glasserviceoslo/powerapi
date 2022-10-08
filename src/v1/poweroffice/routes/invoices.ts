@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { checkIfHeaderExists } from '@middleware/errorHandlers';
+import { checkIfHeaderExists } from '$middleware/errorHandlers';
 import { createNew, getById, getList } from '../controllers/invoices';
 
 const router: Router = Router();

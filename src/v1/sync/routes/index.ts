@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { checkIfHeaderExists } from '@middleware/errorHandlers';
+import { checkIfHeaderExists } from '$middleware/errorHandlers';
 import { syncProductGroups, syncProducts } from '../controllers/products';
 
 const router: Router = Router();

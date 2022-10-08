@@ -1,4 +1,4 @@
-import { axiosRequest } from '@helpers';
+import { axiosRequest } from '$helpers';
 
 export const createProduct = async (accessToken: string, args: any) => {
   const options = {

@@ -21,7 +21,18 @@
         "format": ["camelCase", "PascalCase", "snake_case", "UPPER_CASE"]
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "": "never",
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
   "ignorePatterns": ["node_modules", "build", "dist", "public"]
 }
