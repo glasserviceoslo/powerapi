@@ -3,7 +3,7 @@ import { axiosRequest } from '$helpers';
 export const createCustomer = async (accessToken: string, args: any) => {
   const options = {
     method: 'POST',
-    url: '/customer',
+    url: '/Customer',
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',
@@ -17,7 +17,12 @@ export const createCustomer = async (accessToken: string, args: any) => {
 export const getCustomers = async (accessToken: string, limit: string, skip: string) => {
   const options = {
     method: 'GET',
-    url: `/Customer/?$orderby=Code&$top=${limit}&$skip=${skip}`,
+    url: '/Customer/?',
+    params: new URLSearchParams({
+      $orderby: 'Code',
+      $top: limit,
+      $skip: skip,
+    }),
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',
@@ -30,7 +35,8 @@ export const getCustomers = async (accessToken: string, limit: string, skip: str
 export const getCustomerByName = async (accessToken: string, name: string) => {
   const options = {
     method: 'GET',
-    url: `/Customer?$filter=(tolower(Name) eq '${name}')`,
+    url: '/Customer',
+    params: new URLSearchParams(`?$filter=(tolower(Name) eq '${name}')`),
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',
