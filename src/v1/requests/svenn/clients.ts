@@ -11,7 +11,7 @@ export const createClient = async (accessToken: string, args: any) => {
     },
     data: args,
   };
-  return axiosRequest(options);
+  return axiosRequest<any>(options);
 };
 
 export const getClients = async (accessToken: string, limit: string, skip: string) => {
