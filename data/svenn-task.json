@@ -1,0 +1,16 @@
+{
+  "id": 444555,
+  "user_id": null,
+  "display_id": 3333,
+  "name": "Befaring",
+  "project_id": null,
+  "salary_code_id": null,
+  "account_id": 7716,
+  "type": "general",
+  "deleted": 0,
+  "created_at": "2022-05-20 13:45:35",
+  "updated_at": "2022-05-20 13:45:35",
+  "total_spent_duration": 0,
+  "total_minutes": 0,
+  "user_role": null
+}
