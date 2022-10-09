@@ -13,6 +13,11 @@ export interface IError {
   status?: number;
 }
 
+export interface AuthHeaders {
+  appKey: string;
+  clientKey: string;
+}
+
 export type POProductsType = typeof poProducts;
 
 export type POProductGroupT = typeof poProductGroup;

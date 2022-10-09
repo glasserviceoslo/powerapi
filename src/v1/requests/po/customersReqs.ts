@@ -17,7 +17,7 @@ export const createCustomer = async (accessToken: string, args: any) => {
 export const getCustomers = async (accessToken: string, limit: string, skip: string) => {
   const options = {
     method: 'GET',
-    url: `/customer/?$orderby=Code&$top=${limit}&$skip=${skip}`,
+    url: `/Customer/?$orderby=Code&$top=${limit}&$skip=${skip}`,
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',
@@ -30,7 +30,7 @@ export const getCustomers = async (accessToken: string, limit: string, skip: str
 export const getCustomerByName = async (accessToken: string, name: string) => {
   const options = {
     method: 'GET',
-    url: `/customer?$filter=(tolower(Name) eq '${name}')`,
+    url: `/Customer?$filter=(tolower(Name) eq '${name}')`,
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',
@@ -43,7 +43,7 @@ export const getCustomerByName = async (accessToken: string, name: string) => {
 export const getCustomerById = async (accessToken: string, id: string) => {
   const options = {
     method: 'GET',
-    url: `/customer/${id}`,
+    url: `/Customer/${id}`,
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',
@@ -56,7 +56,7 @@ export const getCustomerById = async (accessToken: string, id: string) => {
 export const deleteCustomerById = async (accessToken: string, id: string) => {
   const options = {
     method: 'DELETE',
-    url: `/customer/${id}`,
+    url: `/Customer/${id}`,
     baseURL: process.env.PO_URL,
     headers: {
       'content-type': 'application/json; charset=utf-8',

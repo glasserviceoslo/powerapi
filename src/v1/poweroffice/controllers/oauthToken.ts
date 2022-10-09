@@ -12,7 +12,7 @@ export const getAccessToken = async (req: Request, res: Response, next: NextFunc
     }
     const base64 = keysToBase64(application_key, client_key);
     const response = await getTokens(base64);
-    res.json(response);
+    res.status(201).json(response);
   } catch (err) {
     next(err);
   }
@@ -27,7 +27,7 @@ export const refreshAccessToken = async (req: Request, res: Response, next: Next
       next(err);
     }
     const response = await getTokenWithRefresh(refresh_token as string);
-    res.json(response);
+    res.status(201).json(response);
   } catch (err) {
     next(err);
   }

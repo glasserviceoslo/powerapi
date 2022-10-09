@@ -11,7 +11,7 @@
     "build": "rm -rf dist && webpack --mode production",
     "build:tsc": "tsc --build",
     "lint": "eslint --ext .ts .",
-    "test": "jest"
+    "test": "doppler run -- jest --detectOpenHandles --forceExit"
   },
   "keywords": [],
   "repository": {
