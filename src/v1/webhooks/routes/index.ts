@@ -1,8 +1,10 @@
 import { Router } from 'express';
 import { moduleFromLatepoint } from '../controllers/latepoint';
+import { latepointToSvenn } from '../controllers/svenn';
 
-const router: Router = Router();
+const hooks: Router = Router();
 
-router.post('/latepoint', moduleFromLatepoint);
+hooks.post('/latepoint', moduleFromLatepoint);
+hooks.post('/svenn', latepointToSvenn);
 
-export default router;
+export default hooks;
