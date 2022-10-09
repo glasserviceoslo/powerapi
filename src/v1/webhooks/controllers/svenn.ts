@@ -6,7 +6,9 @@ import { createProject } from '$v1/requests/svenn/projects';
 export const latepointToSvenn = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { customer } = req.body;
-    const { access_token } = await getToken();
+    const {
+      data: { access_token },
+    } = await getToken();
 
     const clientData = {
       name: customer.full_name,
@@ -20,7 +22,8 @@ export const latepointToSvenn = async (req: Request, res: Response, next: NextFu
     const projectData = {
       user_id: 20706,
       name: customer.custom_fields.cf_ikbgaUAm,
-      start_date: '2020-08-18',
+      address: `${customer.custom_fields.cf_ikbgaUAm}, ${customer.custom_fields.cf_a1uMDl3x}, Norge`,
+      start_date: req.body.start_datetime.split('T')[0],
       client_id: client.id,
       description: customer.custom_fields.cf_nSrCbfGj,
     };
