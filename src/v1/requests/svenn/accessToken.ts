@@ -1,6 +1,6 @@
 import { axiosRequest } from '$helpers';
 
-export const getAccessToken = async () => {
+export const getToken = async () => {
   const options = {
     method: 'POST',
     url: '/login',

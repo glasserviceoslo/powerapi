@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { checkIfHeaderExists } from '$middleware/errorHandlers';
 import { createNew } from '../controllers/clients';
 
-const router: Router = Router({ mergeParams: true });
+const clients: Router = Router();
 
-router.post('/', checkIfHeaderExists, createNew);
+clients.post('/', checkIfHeaderExists, createNew);
 
-export default router;
+export default clients;

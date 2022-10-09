@@ -1,0 +1,18 @@
+{
+  "id": 123456,
+  "name": "Fake street 123",
+  "status": "in_progress",
+  "display_id": "177",
+  "price": null,
+  "user_id": 12345,
+  "client_id": 987654,
+  "parent_id": null,
+  "start_date": "2022-10-11",
+  "end_date": "2022-10-11",
+  "description": "2 vinduer mot syd. ett av dem punktert. Reparere eller kjøpe nytt?",
+  "is_over_budget": 0,
+  "is_behind_schedule": 0,
+  "total_spent_time_duration": "0",
+  "estimated_time_minutes": 60,
+  "allow_only_project_tasks": 0
+}

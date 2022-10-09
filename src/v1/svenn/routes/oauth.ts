@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { getAccessToken, refreshAccessToken } from '../controllers/oauthToken';
+import { getAccessToken } from '../controllers/oauthToken';
 
-const router: Router = Router();
+const auth: Router = Router();
 
-router.post('/', getAccessToken);
-router.post('/refresh', refreshAccessToken);
+auth.post('/', getAccessToken);
 
-export default router;
+export default auth;
