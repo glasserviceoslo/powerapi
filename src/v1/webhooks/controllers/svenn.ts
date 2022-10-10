@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { getToken } from '$v1/requests/svenn/accessToken';
 import { createClient } from '$v1/requests/svenn/clients';
 import { createProject } from '$v1/requests/svenn/projects';
+import { createTask } from '$v1/requests/svenn/tasks';
 
 export const latepointToSvenn = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -34,7 +35,7 @@ export const latepointToSvenn = async (req: Request, res: Response, next: NextFu
       },
     };
 
-    const client = await createClient(access_token, clientData);
+    const { data: client } = await createClient(access_token, clientData);
 
     const projectData = {
       user_id: 20706,
@@ -45,9 +46,21 @@ export const latepointToSvenn = async (req: Request, res: Response, next: NextFu
       description: custom_fields.cf_nSrCbfGj,
     };
 
-    const project = await createProject(access_token, projectData);
+    const { data: project } = await createProject(access_token, projectData);
 
-    return res.status(201).json(project);
+    const taskData = {
+      user_id: 20706,
+      name: 'Befaring',
+      project_id: project.id,
+      account_id: 7716,
+      type: 'general',
+      deleted: 0,
+      total_minutes: 60,
+    };
+
+    const task = await createTask(access_token, taskData);
+
+    return res.status(201).json(task);
   } catch (error) {
     return next(error);
   }

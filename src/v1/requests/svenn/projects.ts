@@ -11,7 +11,7 @@ export const createProject = async (accessToken: string, args: any) => {
     },
     data: args,
   };
-  return axiosRequest(options);
+  return axiosRequest<any>(options);
 };
 
 export const getProjects = async (accessToken: string, limit: string, skip: string) => {
