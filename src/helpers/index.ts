@@ -14,4 +14,4 @@ export const axiosRequest = async <T>(options: AxiosRequestConfig): Promise<T> =
 };
 
 export const forceHttps = (req: Request, res: Response, next: NextFunction) =>
-  req.secure ? next() : res.redirect(`https://' + ${req.headers.host}${req.url}`);
+  req.secure ? next() : res.redirect(`https://${req.headers.host}${req.url}`);
