@@ -8,7 +8,11 @@ import {
   getProductList,
 } from '$v1/requests/po/productsReqs';
 
-export const createNew = async (req: Request, res: Response, next: NextFunction) => {
+export const createNew = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const customer = await createProduct(access_token, req.body);
@@ -18,7 +22,11 @@ export const createNew = async (req: Request, res: Response, next: NextFunction)
   }
 };
 
-export const deleteById = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const deleted = await deleteProductById(access_token, req.params.id);
@@ -28,7 +36,11 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-export const getProductGroups = async (req: Request, res: Response, next: NextFunction) => {
+export const getProductGroups = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
@@ -39,7 +51,11 @@ export const getProductGroups = async (req: Request, res: Response, next: NextFu
   }
 };
 
-export const getGroupById = async (req: Request, res: Response, next: NextFunction) => {
+export const getGroupById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const customer = await getProductGroupById(access_token, req.params.id);
@@ -49,12 +65,19 @@ export const getGroupById = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
-export const productsController = async (req: Request, res: Response, next: NextFunction) => {
+export const productsController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
 
     if (req.query.code) {
-      const customer = await getProductByCode(access_token, req.query.code as string);
+      const customer = await getProductByCode(
+        access_token,
+        req.query.code as string,
+      );
       return res.json(customer);
     }
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };

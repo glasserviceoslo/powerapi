@@ -5,7 +5,11 @@ import { createProject } from '$v1/requests/svenn/projects';
 import { createTask } from '$v1/requests/svenn/tasks';
 import { createWork } from '$v1/requests/svenn/works';
 
-export const latepointToSvenn = async (req: Request, res: Response, next: NextFunction) => {
+export const latepointToSvenn = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const startDateTime = req.body.start_datetime.split('T');
     const endDateTime = req.body.end_datetime.split('T');

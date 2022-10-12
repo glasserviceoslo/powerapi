@@ -14,7 +14,11 @@ export const createProduct = async (accessToken: string, args: any) => {
   return axiosRequest(options);
 };
 
-export const getProductList = async (accessToken: string, limit: string, skip: string) => {
+export const getProductList = async (
+  accessToken: string,
+  limit: string,
+  skip: string,
+) => {
   const options = {
     method: 'GET',
     url: '/Product',
@@ -55,7 +59,11 @@ export const getProductByCode = async (accessToken: string, code: string) => {
   return axiosRequest(options);
 };
 
-export const getProductGroupList = async (accessToken: string, limit: string, skip: string) => {
+export const getProductGroupList = async (
+  accessToken: string,
+  limit: string,
+  skip: string,
+) => {
   const options = {
     method: 'GET',
     url: '/ProductGroup',

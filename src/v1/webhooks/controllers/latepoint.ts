@@ -1,7 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import { createNewModule, getFilteredAccounts, getTokens, updateModule } from '$v1/requests/suite/suiteRequests';
+import {
+  createNewModule,
+  getFilteredAccounts,
+  getTokens,
+  updateModule,
+} from '$v1/requests/suite/suiteRequests';
 
-export const moduleFromLatepoint = async (req: Request, res: Response, next: NextFunction) => {
+export const moduleFromLatepoint = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { customer } = req.body;
     const { custom_fields } = customer;
@@ -24,11 +33,18 @@ export const moduleFromLatepoint = async (req: Request, res: Response, next: Nex
       },
     };
 
-    const { data: existing } = await getFilteredAccounts(access_token, customer.full_name, customer.email);
+    const { data: existing } = await getFilteredAccounts(
+      access_token,
+      customer.full_name,
+      customer.email,
+    );
 
     // Check if Account exists
     if (existing.length > 0) {
-      const newVal = { ...accountData, data: { ...accountData.data, id: existing[0].id } };
+      const newVal = {
+        ...accountData,
+        data: { ...accountData.data, id: existing[0].id },
+      };
       const { data: account } = await updateModule(access_token, newVal);
       return res.status(201).json(account);
     }

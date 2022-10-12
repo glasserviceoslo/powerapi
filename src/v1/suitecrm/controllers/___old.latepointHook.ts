@@ -10,7 +10,11 @@ import {
   updateModule,
 } from '$v1/requests/suite/suiteRequests';
 
-export const moduleFromHook = async (req: Request, res: Response, next: NextFunction) => {
+export const moduleFromHook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { customer } = req.body;
     const { custom_fields } = customer;
@@ -62,12 +66,23 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
     let contact;
     let account;
 
-    const { data: existingA } = await getFilteredAccounts(access_token, customer.full_name, customer.email);
-    const { data: existingC } = await getFilteredContacts(access_token, customer.phone, customer.email);
+    const { data: existingA } = await getFilteredAccounts(
+      access_token,
+      customer.full_name,
+      customer.email,
+    );
+    const { data: existingC } = await getFilteredContacts(
+      access_token,
+      customer.phone,
+      customer.email,
+    );
 
     // Check if Contact exists
     if (existingC.length > 0) {
-      const newVal = { ...contactData, data: { ...contactData.data, id: existingC[0].id } };
+      const newVal = {
+        ...contactData,
+        data: { ...contactData.data, id: existingC[0].id },
+      };
       const { data: uContact } = await updateModule(access_token, newVal);
       contact = uContact;
     }
@@ -83,7 +98,10 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
 
     // Check if Account exists
     if (existingA.length > 0) {
-      const newVal = { ...accountData, data: { ...accountData.data, id: existingA[0].id } };
+      const newVal = {
+        ...accountData,
+        data: { ...accountData.data, id: existingA[0].id },
+      };
       const { data: uAccount } = await updateModule(access_token, newVal);
       account = uAccount;
     }
@@ -91,7 +109,10 @@ export const moduleFromHook = async (req: Request, res: Response, next: NextFunc
     account = nAccount;
 
     await createRelationship(access_token, account.type, account.id, relData);
-    writeFile(path.join(process.cwd(), 'powerapi.log'), `${JSON.stringify(account)}\n`);
+    writeFile(
+      path.join(process.cwd(), 'powerapi.log'),
+      `${JSON.stringify(account)}\n`,
+    );
     return res.status(201).json(account);
   } catch (error) {
     return next(error);

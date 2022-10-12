@@ -14,7 +14,11 @@ export const createClient = async (accessToken: string, args: any) => {
   return axiosRequest<any>(options);
 };
 
-export const getClients = async (accessToken: string, limit: string, skip: string) => {
+export const getClients = async (
+  accessToken: string,
+  limit: string,
+  skip: string,
+) => {
   const options = {
     method: 'GET',
     url: '/Client/?',

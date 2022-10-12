@@ -14,7 +14,11 @@ export const createProject = async (accessToken: string, args: any) => {
   return axiosRequest<any>(options);
 };
 
-export const getProjects = async (accessToken: string, limit: string, skip: string) => {
+export const getProjects = async (
+  accessToken: string,
+  limit: string,
+  skip: string,
+) => {
   const options = {
     method: 'GET',
     url: '/Project/?',

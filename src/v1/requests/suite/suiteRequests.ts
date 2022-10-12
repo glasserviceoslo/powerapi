@@ -32,7 +32,12 @@ export const createNewModule = async (accessToken: string, args: any) => {
   return axiosRequest<any>(options);
 };
 
-export const createRelationship = async (accessToken: string, moduleName: string, id: string, args: any) => {
+export const createRelationship = async (
+  accessToken: string,
+  moduleName: string,
+  id: string,
+  args: any,
+) => {
   const options = {
     method: 'POST',
     url: `/V8/module/${moduleName}/${id}/relationships`,
@@ -60,7 +65,11 @@ export const updateModule = async (accessToken: string, args: any) => {
   return axiosRequest<any>(options);
 };
 
-export const getFilteredAccounts = async (accessToken: string, name: string, email: string) => {
+export const getFilteredAccounts = async (
+  accessToken: string,
+  name: string,
+  email: string,
+) => {
   const options = {
     method: 'GET',
     url: `/V8/module/Accounts?filter[name][eq]=${name}&filter[operator]=and&filter[email1][eq]=${email}`,
@@ -73,7 +82,11 @@ export const getFilteredAccounts = async (accessToken: string, name: string, ema
   return axiosRequest<any>(options);
 };
 
-export const getFilteredContacts = async (accessToken: string, phone: string, email: string) => {
+export const getFilteredContacts = async (
+  accessToken: string,
+  phone: string,
+  email: string,
+) => {
   const options = {
     method: 'GET',
     url: `/V8/module/Contacts?filter[phone_mobile][eq]=${phone}&filter[operator]=and&filter[email1][eq]=${email}`,
@@ -86,7 +99,10 @@ export const getFilteredContacts = async (accessToken: string, phone: string, em
   return axiosRequest<any>(options);
 };
 
-export const getFilteredCategories = async (accessToken: string, name: string) => {
+export const getFilteredCategories = async (
+  accessToken: string,
+  name: string,
+) => {
   const options = {
     method: 'GET',
     url: `/V8/module/AOS_Product_Categories?filter[name][eq]=${name}`,

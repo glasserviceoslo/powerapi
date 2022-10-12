@@ -7,7 +7,11 @@ import {
   getCustomers,
 } from '$v1/requests/po/customersReqs';
 
-export const createNew = async (req: Request, res: Response, next: NextFunction) => {
+export const createNew = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const customer = await createCustomer(access_token, req.body);
@@ -17,7 +21,11 @@ export const createNew = async (req: Request, res: Response, next: NextFunction)
   }
 };
 
-export const deleteById = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const deleted = await deleteCustomerById(access_token, req.params.id);
@@ -27,7 +35,11 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-export const getById = async (req: Request, res: Response, next: NextFunction) => {
+export const getById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const customer = await getCustomerById(access_token, req.params.id);
@@ -37,12 +49,19 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
   }
 };
 
-export const customersController = async (req: Request, res: Response, next: NextFunction) => {
+export const customersController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
 
     if (req.query.name) {
-      const customer = await getCustomerByName(access_token, req.query.name as string);
+      const customer = await getCustomerByName(
+        access_token,
+        req.query.name as string,
+      );
       return res.json(customer);
     }
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };

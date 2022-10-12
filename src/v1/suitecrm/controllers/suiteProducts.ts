@@ -1,8 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
 import { getProductGroupById } from '$v1/requests/po/productsReqs';
-import { createNewModule, getFilteredCategories, getTokens, updateModule } from '$v1/requests/suite/suiteRequests';
+import {
+  createNewModule,
+  getFilteredCategories,
+  getTokens,
+  updateModule,
+} from '$v1/requests/suite/suiteRequests';
 
-export const createSuiteProduct = async (req: Request, res: Response, next: NextFunction) => {
+export const createSuiteProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = await getTokens();
 
@@ -34,14 +43,23 @@ export const createSuiteProduct = async (req: Request, res: Response, next: Next
   }
 };
 
-export const createProductCategory = async (req: Request, res: Response, next: NextFunction) => {
+export const createProductCategory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = await getTokens();
-    const { data: group } = await getProductGroupById(req.headers.access_token, req.body.productGroupId);
-    const { data: existing } = await getFilteredCategories(access_token, group.name);
+    const { data: group } = await getProductGroupById(
+      req.headers.access_token,
+      req.body.productGroupId,
+    );
+    const { data: existing } = await getFilteredCategories(
+      access_token,
+      group.name,
+    );
 
     // if (req.method === 'GET') {
-    //   console.log('🚀 ~ file: suiteProducts.ts ~ line 42 ~ createProductCategory ~ existing', existing);
     //   return res.json(existing);
     // }
 
@@ -53,7 +71,10 @@ export const createProductCategory = async (req: Request, res: Response, next: N
     };
 
     if (existing.length > 0) {
-      const newVal = { ...categoryData, data: { id: existing[0].id, ...categoryData.data } };
+      const newVal = {
+        ...categoryData,
+        data: { id: existing[0].id, ...categoryData.data },
+      };
       const updatedAccount = await updateModule(access_token, newVal);
       return res.status(201).json(updatedAccount);
     }

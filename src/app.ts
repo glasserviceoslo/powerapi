@@ -16,11 +16,16 @@ const app: Application = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.enable('trust proxy');
-app.use(forceHttps);
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.enable('trust proxy');
+//   app.use(forceHttps);
+// }
 
 app.get('/v1', (req, res) => {
-  console.log(`\x1b[33m[${new Date().toUTCString()}] \x1b[0m=>\x1b[32m The endpoint was hit!\x1b[0m`);
+  console.log(
+    `\x1b[33m[${new Date().toUTCString()}] \x1b[0m=>\x1b[32m The endpoint was hit!\x1b[0m`,
+  );
   res.json({ message: 'Welcome to Aploskod integration API!' });
 });
 

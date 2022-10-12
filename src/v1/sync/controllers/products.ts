@@ -2,7 +2,11 @@ import { NextFunction, Request, Response } from 'express';
 import { POProductGroupT, POProductsType } from '$types';
 import { axiosRequest } from '$helpers';
 
-export const syncProducts = async (req: Request, res: Response, next: NextFunction) => {
+export const syncProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
@@ -33,13 +37,17 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
 
         const SProductOpts = {
           method: 'POST',
-          url: `/poweroffice/products`,
+          url: '/poweroffice/products',
           baseURL: process.env.POWERAPI_URL,
           headers: {
             'content-type': 'application/json; charset=utf-8',
             access_token,
           },
-          data: { ...p, categoryName: category.attributes.name, categoryId: category.id },
+          data: {
+            ...p,
+            categoryName: category.attributes.name,
+            categoryId: category.id,
+          },
         };
         return axiosRequest<any>(SProductOpts);
       }),
@@ -50,7 +58,11 @@ export const syncProducts = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
-export const syncProductGroups = async (req: Request, res: Response, next: NextFunction) => {
+export const syncProductGroups = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { access_token } = req.headers;
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };

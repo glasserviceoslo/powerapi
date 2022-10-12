@@ -1,8 +1,10 @@
 import { ITokenResponse } from '$types';
 import { axiosRequest } from '$helpers';
 
-export const keysToBase64 = (applicationKey: string, clientKey: string): string =>
-  Buffer.from(`${applicationKey}:${clientKey}`).toString('base64');
+export const keysToBase64 = (
+  applicationKey: string,
+  clientKey: string,
+): string => Buffer.from(`${applicationKey}:${clientKey}`).toString('base64');
 
 export const getTokens = async (base64: string) => {
   const options = {
