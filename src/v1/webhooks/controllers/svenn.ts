@@ -66,7 +66,7 @@ export const latepointToSvenn = async (req: Request, res: Response, next: NextFu
     const workData = {
       from_date: startDateTime[0],
       to_date: endDateTime[0],
-      from_time: startDateTime[1].substring(0, 8),
+      from_time: startDateTime[1].substring(0, 5),
       duration: 3600,
       lunch_duration: 0,
       user_ids: 20707,
