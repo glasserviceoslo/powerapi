@@ -11,14 +11,12 @@ const ssl = {
   cert: fs.readFileSync('ssl/localhost.pem'),
 };
 
+// prettier-ignore
+const server = process.env.NODE_ENV === 'production'
+  ? https.createServer(ssl, app)
+  : app;
 // cron.schedule('* * * * *', async () => {
 //   const { data } = await axios.get('http://localhost:3001/v1');
 //   console.table(data);
 // });
-if (process.env.NODE_ENV !== 'production') {
-  https
-    .createServer(ssl, app)
-    .listen(port, () => console.log(`App listening on port: ${port}`));
-}
-
-app.listen(port, () => console.log(`App listening on port: ${port}`));
+server.listen(port, () => console.log(`App listening on port: ${port}`));
