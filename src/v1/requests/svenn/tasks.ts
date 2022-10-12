@@ -11,5 +11,5 @@ export const createTask = async (accessToken: string, args: any) => {
     },
     data: args,
   };
-  return axiosRequest(options);
+  return axiosRequest<any>(options);
 };
