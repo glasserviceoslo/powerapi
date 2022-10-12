@@ -17,10 +17,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.enable('trust proxy');
-//   app.use(forceHttps);
-// }
+if (process.env.NODE_ENV !== 'production') {
+  app.enable('trust proxy');
+  app.use(forceHttps);
+}
 
 app.get('/v1', (req, res) => {
   console.log(

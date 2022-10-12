@@ -19,4 +19,8 @@ export const axiosRequest = async <T>(
 };
 
 // prettier-ignore
-export const forceHttps = (req: Request, res: Response, next: NextFunction) => (req.secure ? next() : res.redirect(`https://${req.headers.host}${req.url}`));
+export const forceHttps = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => (req.secure ? next() : res.redirect(301, `https://${req.headers.host}${req.url}`));
