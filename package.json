@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "start:dist": "doppler run -- node dist/server.js",
-    "develop": "nodemon -r tsconfig-paths/register --files src/server.ts",
+    "develop": "nodemon -r tsconfig-paths/register --files src/devServer.ts",
     "dev": "doppler run -- npm run develop",
     "build": "rm -rf dist && webpack --mode production",
     "build:tsc": "tsc --build",
