@@ -4,19 +4,17 @@ import app from '../app';
 
 const request = supertest(app);
 
-const authenticate = (headers: AuthHeaders, tokens: any) => {
-  return (done: jest.DoneCallback) => {
-    request
-      .post('/v1/poweroffice/oauth')
-      .set('Application_key', headers.appKey)
-      .set('Client_key', headers.clientKey)
-      .expect(201)
-      .end((err, res) => {
-        if (err) return done(err);
-        Object.assign(tokens, JSON.parse(res.text));
-        return done();
-      });
-  };
+const authenticate = (headers: AuthHeaders, tokens: any) => (done: jest.DoneCallback) => {
+  request
+    .post('/v1/poweroffice/oauth')
+    .set('Application_key', headers.appKey)
+    .set('Client_key', headers.clientKey)
+    .expect(201)
+    .end((err, res) => {
+      if (err) return done(err);
+      Object.assign(tokens, JSON.parse(res.text));
+      return done();
+    });
 };
 
 describe('SuiteCRM routes', () => {
@@ -41,8 +39,10 @@ describe('SuiteCRM routes', () => {
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        // expect(res.text).toBe(JSON.stringify({ message: 'Welcome to Aploskod integration API!' }));
-        console.log('🚀 ~ file: poweroffice.spec.ts ~ line 48 ~ .end ~ res', res.text);
+        console.log(
+          '🚀 ~ file: poweroffice.spec.ts ~ line 48 ~ .end ~ res',
+          res.text,
+        );
         return done();
       });
   });
