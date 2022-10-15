@@ -8,4 +8,5 @@ const port = process.env.PORT || 3001;
 //   const { data } = await axios.get('http://localhost:3001/v1');
 //   console.table(data);
 // });
+
 app.listen(port, () => console.log(`App listening on port: ${port}`));

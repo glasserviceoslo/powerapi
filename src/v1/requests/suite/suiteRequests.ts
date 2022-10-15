@@ -72,7 +72,10 @@ export const getFilteredAccounts = async (
 ) => {
   const options = {
     method: 'GET',
-    url: `/V8/module/Accounts?filter[name][eq]=${name}&filter[operator]=and&filter[email1][eq]=${email}`,
+    url: '/V8/module/Accounts',
+    params: new URLSearchParams(
+      `?filter[name][eq]=${name}&filter[operator]=and&filter[email1][eq]=${email}`,
+    ),
     baseURL: SUITE_URL,
     headers: {
       'content-type': 'application/json',
@@ -89,7 +92,10 @@ export const getFilteredContacts = async (
 ) => {
   const options = {
     method: 'GET',
-    url: `/V8/module/Contacts?filter[phone_mobile][eq]=${phone}&filter[operator]=and&filter[email1][eq]=${email}`,
+    url: '/V8/module/Contacts',
+    params: new URLSearchParams(
+      `?filter[phone_mobile][eq]=${phone}&filter[operator]=and&filter[email1][eq]=${email}`,
+    ),
     baseURL: SUITE_URL,
     headers: {
       'content-type': 'application/json',
@@ -105,7 +111,8 @@ export const getFilteredCategories = async (
 ) => {
   const options = {
     method: 'GET',
-    url: `/V8/module/AOS_Product_Categories?filter[name][eq]=${name}`,
+    url: '/V8/module/AOS_Product_Categories',
+    params: new URLSearchParams(`?filter[name][eq]=${name}`),
     baseURL: SUITE_URL,
     headers: {
       'content-type': 'application/json',

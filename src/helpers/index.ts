@@ -10,9 +10,11 @@ export const axiosRequest = async <T>(
     const { data } = await axios.request<T>(options);
     return data;
   } catch (error: any) {
+    let count = 0;
     writeFile(
       path.join(process.cwd(), 'powerapi.log'),
-      `${JSON.stringify(error)}\n`,
+      // eslint-disable-next-line no-plusplus
+      `${count++} => ${JSON.stringify(error, null, 2)}`,
     );
     return error.message;
   }
