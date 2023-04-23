@@ -29,6 +29,7 @@ jobs:
           SENTRY_PROJECT: 'powerapi'
         with:
           ignore_missing: true
+          ignore_empty: true
           dist: ${{ github.sha }}
           sourcemaps: './dist'
           version: 0.1
