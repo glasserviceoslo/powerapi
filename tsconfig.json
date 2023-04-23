@@ -6,7 +6,7 @@
     "sourceMap": true,
     "inlineSources": true,
     "rootDir": "src",
-    "outDir": "./dist",
+    "outDir": "dist",
     "sourceRoot": "/",
     "isolatedModules": true,
     "esModuleInterop": true,

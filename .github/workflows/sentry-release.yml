@@ -32,6 +32,6 @@ jobs:
           ignore_empty: true
           dist: ${{ github.sha }}
           sourcemaps: './dist'
-          version: 0.2
+          version: 0.3
           version_prefix: test-v
           url_prefix: ~/
