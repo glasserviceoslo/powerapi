@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node dist/server.js",
     "start:dist": "doppler run -- node dist/server.js",
-    "develop": "nodemon -r tsconfig-paths/register --files src/devServer.ts",
+    "develop": "nodemon -r tsconfig-paths/register --transpile-only  ./src/server.ts",
     "dev": "doppler run -- npm run develop",
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "rm -rf dist && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "build:tsc": "tsc --build",
     "lint": "eslint --ext .ts .",
     "test": "doppler run -- jest --detectOpenHandles --forceExit"
@@ -21,6 +21,7 @@
   "author": "Dovlat Yakshibayev",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "^7.49.0",
     "axios": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -50,6 +51,7 @@
     "supertest": "^6.3.0",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.5",
     "tsconfig-paths": "^4.1.0",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.8.4",

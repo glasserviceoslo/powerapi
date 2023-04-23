@@ -1,0 +1,35 @@
+name: CD Catacloud Api
+on:
+  push:
+    branches: ['sentry']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Node setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - name: Install
+        run: npm run install
+
+      - name: Build for production
+        run: npm run build
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: '9bb42d8785f3486cbdb0eb339acc7740f88b01aa64044570b800a9b3b5709dda'
+          SENTRY_ORG: 'aploskod'
+          SENTRY_PROJECT: 'powerapi'
+        with:
+          ignore_missing: true
+          dist: ${{ github.sha }}
+          sourcemaps: './dist'
+          version: 0.1
+          version_prefix: test-v

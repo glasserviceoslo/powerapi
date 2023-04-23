@@ -4,6 +4,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
+    "inlineSources": true,
+    "rootDir": "src",
     "outDir": "./dist",
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -13,8 +15,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "$*": ["src/*"],
-      "@data/*": ["data/*"]
+      "$*": ["src/*"]
     }
-  }
+  },
+  "exclude": ["jest.config.ts"]
 }
