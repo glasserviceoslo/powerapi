@@ -7,6 +7,7 @@
     "inlineSources": true,
     "rootDir": "src",
     "outDir": "./dist",
+    "sourceRoot": "/",
     "isolatedModules": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
