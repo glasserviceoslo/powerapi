@@ -10,7 +10,7 @@ export const createNew = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const client = await createClient(access_token, req.body);
+    const client = await createClient(access_token as string, req.body);
     writeFile(
       path.join(process.cwd(), 'clients.json'),
       JSON.stringify(client, null, 2),

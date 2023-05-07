@@ -8,7 +8,7 @@ export const createNew = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const work = await createWork(access_token, req.body);
+    const work = await createWork(access_token as string, req.body);
     res.status(201).json(work);
   } catch (error) {
     next(error);

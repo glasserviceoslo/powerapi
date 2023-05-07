@@ -18,7 +18,10 @@ export const getAccessToken = async (
       err.status = 400;
       next(err);
     }
-    const base64 = keysToBase64(application_key, client_key);
+    const base64 = keysToBase64(
+      application_key as string,
+      client_key as string,
+    );
     const response = await getTokens(base64);
     res.status(201).json(response);
   } catch (err) {

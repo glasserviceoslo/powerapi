@@ -36,7 +36,7 @@ export const createSuiteProduct = async (
       },
     };
 
-    const product = await createNewModule(access_token, productData);
+    const product = await createNewModule(access_token as string, productData);
     res.status(201).json(product);
   } catch (error) {
     next(error);
@@ -51,7 +51,7 @@ export const createProductCategory = async (
   try {
     const { access_token } = await getTokens();
     const { data: group } = await getProductGroupById(
-      req.headers.access_token,
+      req.headers.access_token as string,
       req.body.productGroupId,
     );
     const { data: existing } = await getFilteredCategories(
@@ -75,10 +75,13 @@ export const createProductCategory = async (
         ...categoryData,
         data: { id: existing[0].id, ...categoryData.data },
       };
-      const updatedAccount = await updateModule(access_token, newVal);
+      const updatedAccount = await updateModule(access_token as string, newVal);
       return res.status(201).json(updatedAccount);
     }
-    const category = await createNewModule(access_token, categoryData);
+    const category = await createNewModule(
+      access_token as string,
+      categoryData,
+    );
     return res.status(201).json(category);
   } catch (error) {
     return next(error);

@@ -45,10 +45,16 @@ export const moduleFromLatepoint = async (
         ...accountData,
         data: { ...accountData.data, id: existing[0].id },
       };
-      const { data: account } = await updateModule(access_token, newVal);
+      const { data: account } = await updateModule(
+        access_token as string,
+        newVal,
+      );
       return res.status(201).json(account);
     }
-    const { data: account } = await createNewModule(access_token, accountData);
+    const { data: account } = await createNewModule(
+      access_token as string,
+      accountData,
+    );
     return res.status(201).json(account);
   } catch (error) {
     return next(error);

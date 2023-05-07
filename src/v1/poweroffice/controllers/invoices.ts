@@ -12,7 +12,7 @@ export const getList = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const invoices = await getInvoiceList(access_token);
+    const invoices = await getInvoiceList(access_token as string);
     res.json(invoices);
   } catch (error) {
     next(error);
@@ -26,7 +26,7 @@ export const getById = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const invoice = await getInvoiceById(access_token, req.params.id);
+    const invoice = await getInvoiceById(access_token as string, req.params.id);
     res.json(invoice);
   } catch (error) {
     next(error);
@@ -40,7 +40,7 @@ export const createNew = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const invoice = await createInvoice(access_token, req.body);
+    const invoice = await createInvoice(access_token as string, req.body);
     res.status(201).json(invoice);
   } catch (error) {
     next(error);

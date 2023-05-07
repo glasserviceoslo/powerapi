@@ -83,10 +83,16 @@ export const moduleFromHook = async (
         ...contactData,
         data: { ...contactData.data, id: existingC[0].id },
       };
-      const { data: uContact } = await updateModule(access_token, newVal);
+      const { data: uContact } = await updateModule(
+        access_token as string,
+        newVal,
+      );
       contact = uContact;
     }
-    const { data: nContact } = await createNewModule(access_token, contactData);
+    const { data: nContact } = await createNewModule(
+      access_token as string,
+      contactData,
+    );
     contact = nContact;
 
     const relData = {
@@ -102,13 +108,24 @@ export const moduleFromHook = async (
         ...accountData,
         data: { ...accountData.data, id: existingA[0].id },
       };
-      const { data: uAccount } = await updateModule(access_token, newVal);
+      const { data: uAccount } = await updateModule(
+        access_token as string,
+        newVal,
+      );
       account = uAccount;
     }
-    const { data: nAccount } = await createNewModule(access_token, accountData);
+    const { data: nAccount } = await createNewModule(
+      access_token as string,
+      accountData,
+    );
     account = nAccount;
 
-    await createRelationship(access_token, account.type, account.id, relData);
+    await createRelationship(
+      access_token as string,
+      account.type,
+      account.id,
+      relData,
+    );
     writeFile(
       path.join(process.cwd(), 'powerapi.log'),
       `${JSON.stringify(account)}\n`,

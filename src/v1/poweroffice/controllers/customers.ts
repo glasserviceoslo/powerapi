@@ -14,7 +14,7 @@ export const createNew = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const customer = await createCustomer(access_token, req.body);
+    const customer = await createCustomer(access_token as string, req.body);
     res.status(201).json(customer);
   } catch (error) {
     next(error);
@@ -28,7 +28,10 @@ export const deleteById = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const deleted = await deleteCustomerById(access_token, req.params.id);
+    const deleted = await deleteCustomerById(
+      access_token as string,
+      req.params.id,
+    );
     res.status(204).json(deleted);
   } catch (error) {
     next(error);
@@ -42,7 +45,10 @@ export const getById = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const customer = await getCustomerById(access_token, req.params.id);
+    const customer = await getCustomerById(
+      access_token as string,
+      req.params.id,
+    );
     res.json(customer);
   } catch (error) {
     next(error);
@@ -59,13 +65,17 @@ export const customersController = async (
 
     if (req.query.name) {
       const customer = await getCustomerByName(
-        access_token,
+        access_token as string,
         req.query.name as string,
       );
       return res.json(customer);
     }
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
-    const customersList = await getCustomers(access_token, limit, skip);
+    const customersList = await getCustomers(
+      access_token as string,
+      limit,
+      skip,
+    );
     return res.json(customersList);
   } catch (error) {
     return next(error);

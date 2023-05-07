@@ -15,7 +15,7 @@ export const createNew = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const customer = await createProduct(access_token, req.body);
+    const customer = await createProduct(access_token as string, req.body);
     res.status(201).json(customer);
   } catch (error) {
     next(error);
@@ -29,7 +29,10 @@ export const deleteById = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const deleted = await deleteProductById(access_token, req.params.id);
+    const deleted = await deleteProductById(
+      access_token as string,
+      req.params.id,
+    );
     res.status(204).json(deleted);
   } catch (error) {
     next(error);
@@ -44,7 +47,11 @@ export const getProductGroups = async (
   try {
     const { access_token } = req.headers;
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
-    const groups = await getProductGroupList(access_token, limit, skip);
+    const groups = await getProductGroupList(
+      access_token as string,
+      limit,
+      skip,
+    );
     return res.json(groups);
   } catch (error) {
     return next(error);
@@ -58,7 +65,10 @@ export const getGroupById = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    const customer = await getProductGroupById(access_token, req.params.id);
+    const customer = await getProductGroupById(
+      access_token as string,
+      req.params.id,
+    );
     res.json(customer);
   } catch (error) {
     next(error);
@@ -75,13 +85,13 @@ export const productsController = async (
 
     if (req.query.code) {
       const customer = await getProductByCode(
-        access_token,
+        access_token as string,
         req.query.code as string,
       );
       return res.json(customer);
     }
     const { limit = '10', skip = '0' } = req.query as { [key: string]: string };
-    const products = await getProductList(access_token, limit, skip);
+    const products = await getProductList(access_token as string, limit, skip);
     return res.json(products);
   } catch (error) {
     return next(error);

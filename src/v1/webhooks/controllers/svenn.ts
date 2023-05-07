@@ -42,7 +42,10 @@ export const latepointToSvenn = async (
       },
     };
 
-    const { data: client } = await createClient(access_token, clientData);
+    const { data: client } = await createClient(
+      access_token as string,
+      clientData,
+    );
 
     const projectData = {
       user_id: 20706,
@@ -54,7 +57,10 @@ export const latepointToSvenn = async (
       estimated_time_minutes: 60,
     };
 
-    const { data: project } = await createProject(access_token, projectData);
+    const { data: project } = await createProject(
+      access_token as string,
+      projectData,
+    );
 
     const taskData = {
       user_id: 20706,
@@ -65,7 +71,7 @@ export const latepointToSvenn = async (
       total_minutes: 60,
     };
 
-    const { data: task } = await createTask(access_token, taskData);
+    const { data: task } = await createTask(access_token as string, taskData);
 
     const workData = {
       from_date: startDateTime[0],
@@ -82,7 +88,7 @@ export const latepointToSvenn = async (
       is_published: req.body.status === 'approved',
     };
 
-    const work = await createWork(access_token, workData);
+    const work = await createWork(access_token as string, workData);
 
     return res.status(201).json(work);
   } catch (error) {
