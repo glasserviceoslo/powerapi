@@ -40,7 +40,6 @@ export const createNew = async (
 ) => {
   try {
     const { access_token } = req.headers;
-    console.log('req.body', req.body);
     const invoice = await createInvoice(access_token as string, req.body);
     res.status(201).json(invoice);
   } catch (error) {
