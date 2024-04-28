@@ -1,5 +1,6 @@
 // import cron from 'node-cron';
 // import axios from 'axios';
+import 'dotenv/config';
 import app from './app';
 
 const port = process.env.PORT || 3001;
