@@ -40,7 +40,7 @@ export const moduleFromLatepoint = async (
     );
 
     // Check if Account exists
-    if (existing.length > 0) {
+    if (existing?.length > 0) {
       const newVal = {
         ...accountData,
         data: { ...accountData.data, id: existing[0].id },
